@@ -467,7 +467,8 @@ If you need to execute occasional shell commands during your
 debugging session, there is no need to leave or suspend GDB; you can
 just use the `shell` command.
 
-`shell command-string``!command-string`
+`shell command-string`<br>
+`!command-string`<br>
 Invoke a standard shell to execute command-string.
 Note that no space is needed between `!` and command-string.
 If it exists, the environment variable `SHELL` determines which
@@ -478,7 +479,7 @@ The utility `make` is often needed in development environments.
 You do not have to use the `shell` command for this purpose in
 GDB:
 
-`make make-args`
+`make make-args`<br>
 Execute the `make` program with the specified
 arguments.  This is equivalent to &lsquo;shell make make-args&rsquo;.
 
@@ -488,24 +489,24 @@ arguments.  This is equivalent to &lsquo;shell make make-args&rsquo;.
 You may want to save the output of GDB commands to a file.
 There are several commands to control GDB&rsquo;s logging.
 
-`set logging on`
+- `set logging on`  
 Enable logging.
 
-`set logging off`
+- `set logging off`  
 Disable logging.
 
-`set logging file file`
+- `set logging file file`  
 Change the name of the current logfile.  The default logfile is gdb.txt.
 
-`set logging overwrite [on|off]`
+- `set logging overwrite [on|off]`  
 By default, GDB will append to the logfile.  Set `overwrite` if
 you want `set logging on` to overwrite the logfile instead.
 
-`set logging redirect [on|off]`
+- `set logging redirect [on|off]`  
 By default, GDB output will go to both the terminal and the logfile.
 Set `redirect` if you want output to go only to the log file.
 
-`show logging`
+- `show logging`  
 Show the current values of the logging settings.
 
 
