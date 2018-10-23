@@ -80,6 +80,87 @@ All options and command line arguments you give are processed
 in sequential order.  The order makes a difference when the
 &lsquo;-x&rsquo; option is used.
 
-&bull; [File Options](File-Options.html#File-Options):  Choosing files
-&bull; [Mode Options](Mode-Options.html#Mode-Options):  Choosing modes
-&bull; [Startup](Startup.html#Startup):  What GDB does during startup
+#### 2.1.1 Choosing Files
+
+When GDB starts, it reads any arguments other than options as
+specifying an executable file and core file (or process ID).  This is
+the same as if the arguments were specified by the &lsquo;-se&rsquo; and
+&lsquo;-c&rsquo; (or &lsquo;-p&rsquo;) options respectively.  (GDB reads the
+first argument that does not have an associated option flag as
+equivalent to the &lsquo;-se&rsquo; option followed by that argument; and the
+second argument that does not have an associated option flag, if any, as
+equivalent to the &lsquo;-c&rsquo;/&lsquo;-p&rsquo; option followed by that argument.)
+If the second argument begins with a decimal digit, GDB will
+first attempt to attach to it as a process, and if that fails, attempt
+to open it as a corefile.  If you have a corefile whose name begins with
+a digit, you can prevent GDB from treating it as a pid by
+prefixing it with ./, e.g. ./12345.
+
+If GDB has not been configured to included core file support,
+such as for most embedded targets, then it will complain about a second
+argument and ignore it.
+
+Many options have both long and short forms; both are shown in the
+following list.  GDB also recognizes the long forms if you truncate
+them, so long as enough of the option is present to be unambiguous.
+(If you prefer, you can flag option arguments with &lsquo;--&rsquo; rather
+than &lsquo;-&rsquo;, though we illustrate the more usual convention.)
+
+`-symbols file``-s file`
+Read symbol table from file file.
+
+`-exec file``-e file`
+Use file file as the executable file to execute when appropriate,
+and for examining pure data in conjunction with a core dump.
+
+`-se file`
+Read symbol table from file file and use it as the executable
+file.
+
+`-core file``-c file`
+Use file file as a core dump to examine.
+
+`-pid number``-p number`
+Connect to process ID number, as with the `attach` command.
+
+`-command file``-x file`
+Execute commands from file file.  The contents of this file is
+evaluated exactly as the `source` command would.
+See [Command files](Command-Files.html#Command-Files).
+
+`-eval-command command``-ex command`
+Execute a single GDB command.
+
+This option may be used multiple times to call multiple commands.  It may
+also be interleaved with &lsquo;-command&rsquo; as required.
+
+    gdb -ex 'target sim' -ex 'load' \
+       -x setbreakpoints -ex 'run' a.out
+    
+
+`-init-command file``-ix file`
+Execute commands from file file before loading the inferior (but
+after loading gdbinit files).
+See [Startup](Startup.html#Startup).
+
+`-init-eval-command command``-iex command`
+Execute a single GDB command before loading the inferior (but
+after loading gdbinit files).
+See [Startup](Startup.html#Startup).
+
+`-directory directory``-d directory`
+Add directory to the path to search for source and script files.
+
+`-r``-readnow`
+Read each symbol file&rsquo;s entire symbol table immediately, rather than
+the default, which is to read it incrementally as it is needed.
+This makes startup slower, but makes future operations faster.
+
+`--readnever`
+Do not read each symbol file&rsquo;s symbolic debug information.  This makes
+startup faster but at the expense of not being able to perform
+symbolic debugging.  DWARF unwind information is also not read,
+meaning backtraces may become incomplete or inaccurate.  One use of
+this is when a user simply wants to do the following sequence: attach,
+dump core, detach.  Loading the debugging information in this case is
+an unnecessary cause of delay.
