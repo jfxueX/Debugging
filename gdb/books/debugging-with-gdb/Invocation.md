@@ -2,7 +2,7 @@ Next: [Commands](Commands.html#Commands), Previous: [Sample Session](Sample-Sess
 
 ---
 
-## 2 Getting In and Out of GDB
+# 2 Getting In and Out of GDB
 
 This chapter discusses how to start GDB, and how to get out of it.
 The essentials are:
@@ -21,7 +21,7 @@ The essentials are:
 * [2.3 Shell Commands](#23-shell-commands)
 * [2.4 Logging Output](#24-logging-output)
 
-### 2.1 Invoking GDB
+## 2.1 Invoking GDB
 
 Invoke GDB by running the program `gdb`.  Once started,
 GDB reads commands from the terminal until you tell it to exit.
@@ -176,7 +176,7 @@ dump core, detach.  Loading the debugging information in this case is
 an unnecessary cause of delay.
 
 
-#### 2.1.2 Choosing Modes
+### 2.1.2 Choosing Modes
 
 You can run GDB in various alternative modes&mdash;for example, in
 batch mode or quiet mode.
@@ -361,15 +361,14 @@ configuration parameters, and then exit.  These details can be
 important when reporting GDB bugs (see [GDB Bugs](GDB-Bugs.html#GDB-Bugs)).
 
 
-#### 2.1.3 What GDB Does During Startup
+### 2.1.3 What GDB Does During Startup
 
 Here&rsquo;s the description of what GDB does during session startup:
 
 1.  Sets up the command interpreter as specified by the command line
 (see [interpreter](Mode-Options.html#Mode-Options)).
 
-2. 
-Reads the system-wide *init file* (if --with-system-gdbinit was
+2.  Reads the system-wide *init file* (if --with-system-gdbinit was
 used when building GDB; see [System-wide configuration and settings](System_002dwide-configuration.html#System_002dwide-configuration)) and executes all the commands in
 that file.
 
@@ -442,7 +441,8 @@ DOS/Windows systems, the home directory is the one pointed to by the
 `HOME` environment variable.
 
 
-### 2.2 Quitting GDB
+## 2.2 Quitting GDB
+
 `quit [expression]``q`
 To exit GDB, use the `quit` command (abbreviated
 `q`), or type an end-of-file character (usually Ctrl-d).  If you
@@ -461,7 +461,7 @@ device, you can release it with the `detach` command
 (see [Debugging an Already-running Process](Attach.html#Attach)).
 
 
-### 2.3 Shell Commands
+## 2.3 Shell Commands
 
 If you need to execute occasional shell commands during your
 debugging session, there is no need to leave or suspend GDB; you can
@@ -483,7 +483,7 @@ Execute the `make` program with the specified
 arguments.  This is equivalent to &lsquo;shell make make-args&rsquo;.
 
 
-### 2.4 Logging Output
+## 2.4 Logging Output
 
 You may want to save the output of GDB commands to a file.
 There are several commands to control GDB&rsquo;s logging.
