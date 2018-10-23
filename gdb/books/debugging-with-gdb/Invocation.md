@@ -181,109 +181,115 @@ an unnecessary cause of delay.
 You can run GDB in various alternative modes&mdash;for example, in
 batch mode or quiet mode.
 
-`-nx``-n`
+- `-nx`  
+`-n`  
 Do not execute commands found in any initialization file.
 There are three init files, loaded in the following order:
 
-`system.gdbinit`
+- `system.gdbinit`  
 This is the system-wide init file.
 Its location is specified with the `--with-system-gdbinit`
 configure option (see [System-wide configuration](System_002dwide-configuration.html#System_002dwide-configuration)).
 It is loaded first when GDB starts, before command line options
 have been processed.
 
-`~/.gdbinit`
+- `~/.gdbinit`  
 This is the init file in your home directory.
 It is loaded next, after system.gdbinit, and before
 command options have been processed.
 
-`./.gdbinit`
+- `./.gdbinit`  
 This is the init file in the current directory.
 It is loaded last, after command line options other than `-x` and
 `-ex` have been processed.  Command line options `-x` and
-`-ex` are processed last, after ./.gdbinit has been loaded.
-
+`-ex` are processed last, after ./.gdbinit has been loaded.  
+  
 For further documentation on startup processing, See [Startup](Startup.html#Startup).
 For documentation on how to write command files,
 See [Command Files](Command-Files.html#Command-Files).
 
-`-nh`
+- `-nh`  
 Do not execute commands found in ~/.gdbinit, the init file
 in your home directory.
 See [Startup](Startup.html#Startup).
 
-`-quiet``-silent``-q`
+- `-quiet`  
+`-silent``-q`  
 &ldquo;Quiet&rdquo;.  Do not print the introductory and copyright messages.  These
 messages are also suppressed in batch mode.
 
-`-batch`
+- `-batch`  
 Run in batch mode.  Exit with status `0` after processing all the
 command files specified with &lsquo;-x&rsquo; (and all commands from
 initialization files, if not inhibited with &lsquo;-n&rsquo;).  Exit with
 nonzero status if an error occurs in executing the GDB commands
 in the command files.  Batch mode also disables pagination, sets unlimited
 terminal width and height see [Screen Size](Screen-Size.html#Screen-Size), and acts as if set confirm
-off were in effect (see [Messages/Warnings](Messages_002fWarnings.html#Messages_002fWarnings)).
-
+off were in effect (see [Messages/Warnings](Messages_002fWarnings.html#Messages_002fWarnings)).  
+  
 Batch mode may be useful for running GDB as a filter, for
 example to download and run a program on another computer; in order to
-make this more useful, the message
-
+make this more useful, the message  
+  
     Program exited normally.
     
-
+  
 (which is ordinarily issued whenever a program running under
 GDB control terminates) is not issued when running in batch
 mode.
 
-`-batch-silent`
+- `-batch-silent`  
 Run in batch mode exactly like &lsquo;-batch&rsquo;, but totally silently.  All
 GDB output to `stdout` is prevented (`stderr` is
 unaffected).  This is much quieter than &lsquo;-silent&rsquo; and would be useless
-for an interactive session.
-
+for an interactive session.  
+   
 This is particularly useful when using targets that give &lsquo;Loading section&rsquo;
-messages, for example.
-
+messages, for example.  
+  
 Note that targets that give their output via GDB, as opposed to
 writing directly to `stdout`, will also be made silent.
 
-`-return-child-result`
+- `-return-child-result`  
 The return code from GDB will be the return code from the child
 process (the process being debugged), with the following exceptions:
 
-- GDB exits abnormally.  E.g., due to an incorrect argument or an
+    - GDB exits abnormally.  E.g., due to an incorrect argument or an
 internal error.  In this case the exit code is the same as it would have been
 without &lsquo;-return-child-result&rsquo;.
 
--  The user quits with an explicit value.  E.g., &lsquo;quit 1&rsquo;.
+    -  The user quits with an explicit value.  E.g., &lsquo;quit 1&rsquo;.
 
--  The child process never runs, or is not allowed to terminate, in which case
+    -  The child process never runs, or is not allowed to terminate, in which case
 the exit code will be -1.
 
 This option is useful in conjunction with &lsquo;-batch&rsquo; or &lsquo;-batch-silent&rsquo;,
 when GDB is being used as a remote program loader or simulator
 interface.
 
-`-nowindows``-nw`
+`-nowindows`  
+`-nw`  
 &ldquo;No windows&rdquo;.  If GDB comes with a graphical user interface
 (GUI) built in, then this option tells GDB to only use the command-line
 interface.  If no GUI is available, this option has no effect.
 
-`-windows``-w`
+`-windows`  
+`-w`  
 If GDB includes a GUI, then this option requires it to be
 used if possible.
 
-`-cd directory`
+`-cd directory`  
 Run GDB using directory as its working directory,
 instead of the current directory.
 
-`-data-directory directory``-D directory`
+`-data-directory directory`  
+`-D directory`  
 Run GDB using directory as its data directory.
 The data directory is where GDB searches for its
 auxiliary files.  See [Data Files](Data-Files.html#Data-Files).
 
-`-fullname``-f`
+`-fullname`  
+`-f`  
 GNU Emacs sets this option when it runs GDB as a
 subprocess.  It tells GDB to output the full file name and line
 number in a standard, recognizable fashion each time a stack frame is
@@ -307,55 +313,57 @@ that control GDB, and level 2 has been deprecated.
 The annotation mechanism has largely been superseded by GDB/MI
 (see [GDB/MI](GDB_002fMI.html#GDB_002fMI)).
 
-`--args`
+- `--args`  
 Change interpretation of command line so that arguments following the
 executable file are passed as command line arguments to the inferior.
 This option stops option processing.
 
-`-baud bps``-b bps`
+- `-baud bps`  
+`-b bps`  
 Set the line speed (baud rate or bits per second) of any serial
 interface used by GDB for remote debugging.
 
-`-l timeout`
+- `-l timeout`  
 Set the timeout (in seconds) of any communication used by GDB
 for remote debugging.
 
-`-tty device``-t device`
+- `-tty device`  
+`-t device`
 Run using device for your program&rsquo;s standard input and output.
 
-`-tui`
+- `-tui`  
 Activate the *Text User Interface* when starting.  The Text User
 Interface manages several text windows on the terminal, showing
 source, assembly, registers and GDB command outputs
 (see [GDB Text User Interface](TUI.html#TUI)).  Do not use this
 option if you run GDB from Emacs (see [Using GDB under GNU Emacs](Emacs.html#Emacs)).
 
-`-interpreter interp`
+- `-interpreter interp`  
 Use the interpreter interp for interface with the controlling
 program or device.  This option is meant to be set by programs which
 communicate with GDB using it as a back end.
-See [Command Interpreters](Interpreters.html#Interpreters).
-
+See [Command Interpreters](Interpreters.html#Interpreters).  
+  
 &lsquo;--interpreter=mi&rsquo; (or &lsquo;--interpreter=mi2&rsquo;) causes
 GDB to use the *GDB/MI interface* (see [The GDB/MI Interface](GDB_002fMI.html#GDB_002fMI)) included since GDB version 6.0.  The
 previous GDB/MI interface, included in GDB version 5.3 and
 selected with &lsquo;--interpreter=mi1&rsquo;, is deprecated.  Earlier
 GDB/MI interfaces are no longer supported.
 
-`-write`
+- `-write`  
 Open the executable and core files for both reading and writing.  This
 is equivalent to the &lsquo;set write on&rsquo; command inside GDB
 (see [Patching](Patching.html#Patching)).
 
-`-statistics`
+- `-statistics`  
 This option causes GDB to print statistics about time and
 memory usage after it completes each command and returns to the prompt.
 
-`-version`
+- `-version`  
 This option causes GDB to print its version number and
 no-warranty blurb, and exit.
 
-`-configuration`
+- `-configuration`  
 This option causes GDB to print details about its build-time
 configuration parameters, and then exit.  These details can be
 important when reporting GDB bugs (see [GDB Bugs](GDB-Bugs.html#GDB-Bugs)).
@@ -443,7 +451,8 @@ DOS/Windows systems, the home directory is the one pointed to by the
 
 ## 2.2 Quitting GDB
 
-`quit [expression]``q`
+- `quit [expression]`  
+`q`  
 To exit GDB, use the `quit` command (abbreviated
 `q`), or type an end-of-file character (usually Ctrl-d).  If you
 do not supply expression, GDB will terminate normally;
@@ -467,8 +476,8 @@ If you need to execute occasional shell commands during your
 debugging session, there is no need to leave or suspend GDB; you can
 just use the `shell` command.
 
-`shell command-string`<br>
-`!command-string`<br>
+- `shell command-string`  
+`!command-string`  
 Invoke a standard shell to execute command-string.
 Note that no space is needed between `!` and command-string.
 If it exists, the environment variable `SHELL` determines which
@@ -479,7 +488,7 @@ The utility `make` is often needed in development environments.
 You do not have to use the `shell` command for this purpose in
 GDB:
 
-`make make-args`<br>
+- `make make-args`  
 Execute the `make` program with the specified
 arguments.  This is equivalent to &lsquo;shell make make-args&rsquo;.
 
