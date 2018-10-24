@@ -73,37 +73,37 @@ program, and will display that source code, not the generated C code.
 If a source file name ends in one of the following extensions, then
 GDB infers that its language is the one indicated.
 
-- .ada  
-- .ads  
-- .adb  
-- .a  
+- `.ada`  
+`.ads`  
+`.adb`  
+`.a`  
 Ada source file.
 
-- .c  
+- `.c`  
 C source file
 
-- .C  
-.cc  
-.cp  
-.cpp  
-.cxx  
-.c++  
+- `.C`  
+`.cc`  
+`.cp`  
+`.cpp`  
+`.cxx`  
+`.c++`  
 C++ source file
 
-- .d  
+- `.d`  
 D source file
 
-- .m  
+- `.m`  
 Objective-C source file
 
-- .f  
+- `.f`  
 .F    
 Fortran source file
 
-- .mod  
+- `.mod`  
 Modula-2 source file
 
-- .s  
+- `.s`  
 .S  
 Assembler source file.  This actually behaves almost like C, but
 GDB does not skip over function prologues when stepping.
@@ -216,14 +216,14 @@ errors from ever causing any run-time problems.  For example,
 <pre>
 int klass::my_method(char \*b) { return  b ? 1 : 2; }
 
-(gdb) <b>print obj.my_method</b> (0)
+(gdb) <b>print obj.my_method (0)</b>
 $1 = 2
 
 
 but
 
 
-(gdb) <b>print obj.my_method</b> (0x1234)
+(gdb) <b>print obj.my_method (0x1234)</b>
 Cannot resolve method klass::my_method to any overloaded instance
 </pre>
     
@@ -432,7 +432,8 @@ Address operator.  Defined on variables.  Same precedence as `++`.
 For debugging C++, GDB implements a use of &lsquo;&&rsquo; beyond what is
 allowed in the C++ language itself: you can use &lsquo;&(&ref)&rsquo;
 to examine the address
-where a C++ reference variable (declared with &lsquo;&ref&rsquo;) is
+
+    where a C++ reference variable (declared with &lsquo;&ref&rsquo;) is
 stored.
 
 - `-`  
@@ -509,7 +510,8 @@ the form &lsquo;\nnn&rsquo;, where nnn is the octal representation
 of the character&rsquo;s ordinal value; or of the form &lsquo;\x&rsquo;, where
 &lsquo;x&rsquo; is a predefined special character&mdash;for example,
 &lsquo;\n&rsquo; for newline.  
-Wide character constants can be written by prefixing a character
+
+    Wide character constants can be written by prefixing a character
 constant with &lsquo;L&rsquo;, as in C.  For example, &lsquo;L'x'&rsquo; is the wide
 form of &lsquo;x&rsquo;.  The target wide character set is used when
 computing the value of this constant (see [Character Sets](Character-Sets.html#Character-Sets)).
@@ -519,7 +521,8 @@ double quotes (`"`).  Any valid character constant (as described
 above) may appear.  Double quotes within the string must be preceded by
 a backslash, so for instance &lsquo;"a\"b'c"&rsquo; is a string of five
 characters.  
-Wide string constants can be written by prefixing a string constant
+
+    Wide string constants can be written by prefixing a string constant
 with &lsquo;L&rsquo;, as in C.  The target wide character set is used when
 computing the value of this constant (see [Character Sets](Character-Sets.html#Character-Sets)).
 
@@ -563,25 +566,27 @@ perform overload resolution involving user-defined type conversions,
 calls to constructors, or instantiations of templates that do not exist
 in the program.  It also cannot handle ellipsis argument lists or
 default arguments.  
-It does perform integral conversions and promotions, floating-point
+
+    It does perform integral conversions and promotions, floating-point
 promotions, arithmetic conversions, pointer conversions, conversions of
 class objects to base classes, and standard conversions such as those of
 functions or arrays to pointers; it requires an exact match on the
 number of function arguments.  
-Overload resolution is always performed, unless you have specified
+
+    Overload resolution is always performed, unless you have specified
 `set overload-resolution off`.  See [GDB Features for C++](Debugging-C-Plus-Plus.html#Debugging-C-Plus-Plus).  
 You must specify `set overload-resolution off` in order to use an
 explicit function signature to call an overloaded function, as in  
-    <pre>
-p 'foo(char,int)'('x', 13)
-</pre>  
-The GDB command-completion facility can simplify this;
+    <pre>p 'foo(char,int)'('x', 13)</pre>  
+
+    The GDB command-completion facility can simplify this;
 see [Command Completion](Completion.html#Completion).
 
 4. GDB understands variables declared as C++ lvalue or rvalue
 references; you can use them in expressions just as you do in C++
 source&mdash;they are automatically dereferenced.  
-In the parameter list shown when GDB displays a frame, the values of
+
+    In the parameter list shown when GDB displays a frame, the values of
 reference variables are not displayed (unlike other variables); this
 avoids clutter, since references are often used for large structures.
 The *address* of a reference variable is always shown, unless
@@ -651,7 +656,8 @@ See [Ambiguous Expressions](Ambiguous-Expressions.html#Ambiguous-Expressions).
 Setting breakpoints using regular expressions is helpful for setting
 breakpoints on overloaded functions that are not members of any special
 classes.
-See [Setting Breakpoints](Set-Breaks.html#Set-Breaks).
+
+    See [Setting Breakpoints](Set-Breaks.html#Set-Breaks).
 
 - `catch throw`   
 `catch rethrow`  
@@ -661,7 +667,8 @@ Debug C++ exception handling using these commands.  See [Setting Catchpoints](Se
 - `ptype typename`  
 Print inheritance relationships as well as other information for type
 typename.  
-See [Examining the Symbol Table](Symbols.html#Symbols).
+
+    See [Examining the Symbol Table](Symbols.html#Symbols).
 
 - `info vtbl expression.`  
 The `info vtbl` command can be used to display the virtual
@@ -742,12 +749,14 @@ tag, and GDB displays the symbol like this:
 You can set a breakpoint on such functions simply as if they had no
 tag.  For example:
 
-    (gdb) b function(int)
-    Breakpoint 2 at 0x40060d: file main.cc, line 10.
-    (gdb) info breakpoints
-    Num     Type           Disp Enb Address    What
-    1       breakpoint     keep y   0x0040060d in function[abi:cxx11](int)
-                                               at main.cc:10
+<pre>
+(gdb) <b>b function(int)</b>
+Breakpoint 2 at 0x40060d: file main.cc, line 10.
+(gdb) <b>info breakpoints</b>
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0x0040060d in function[abi:cxx11](int)
+                                           at main.cc:10
+</pre>
     
 
 On the rare occasion you need to disambiguate between different ABI
