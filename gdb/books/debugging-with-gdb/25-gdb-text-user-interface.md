@@ -17,9 +17,10 @@ is available.
 The TUI mode is enabled by default when you invoke GDB as
 &lsquo;gdb -tui&rsquo;.
 You can also switch in and out of TUI mode while GDB runs by
-using various TUI commands and key bindings, such as `tui
-enable` or C-x C-a.  See [TUI Commands](#254-tui-specific-commands), and
+using various TUI commands and key bindings, such as `tui enable` 
+or `C-x` `C-a`.  See [TUI Commands](#254-tui-specific-commands), and
 [TUI Key Bindings](#252-tui-key-bindings).
+
 
 ## 25.1 TUI Overview
 
@@ -128,20 +129,20 @@ The screen is then refreshed.
 Use a TUI layout with only one window.  The layout will
 either be &lsquo;source&rsquo; or &lsquo;assembly&rsquo;.  When the TUI mode
 is not active, it will switch to the TUI mode.  
-Think of this key binding as the Emacs C-x 1 binding.
+Think of this key binding as the Emacs `C-x 1` binding.
 
 - `C-x 2`  
 Use a TUI layout with at least two windows.  When the current
 layout already has two windows, the next layout with two windows is used.
 When a new layout is chosen, one window will always be common to the
 previous layout and the new one.  
-Think of it as the Emacs C-x 2 binding.
+Think of it as the Emacs `C-x 2` binding.
 
 - `C-x o`  
 Change the active window.  The TUI associates several key bindings
 (like scrolling and arrow keys) with the active window.  This command
 gives the focus to the next TUI window.  
-Think of it as the Emacs C-x o binding.
+Think of it as the Emacs `C-x o` binding.
 
 - `C-x s`  
 Switch in and out of the TUI SingleKey mode that binds single
@@ -172,15 +173,15 @@ Refresh the screen.
 Because the arrow keys scroll the active window in the TUI mode, they
 are not available for their normal use by readline unless the command
 window has the focus.  When another window is active, you must use
-other readline key bindings such as C-p, C-n, C-b
-and C-f to control the command window.
+other readline key bindings such as `C-p`, `C-n`, `C-b`
+and `C-f` to control the command window.
 
 
 ## 25.3 TUI Single Key Mode
 
 The TUI also provides a *SingleKey* mode, which binds several
-frequently used GDB commands to single keys.  Type `C-x s` to
-switch into this mode, where the following key bindings are used:
+frequently used GDB commands to single keys.  **Type `C-x s` to
+switch into this mode**, where the following key bindings are used:
 
 - `c`  
 continue
@@ -335,7 +336,7 @@ next.
 Update the source window and the current execution point.
 
 - `winheight name +count`  
-- `winheight name -count`  
+`winheight name -count`  
 Change the height of the window name by count
 lines.  Positive counts increase the height, while negative counts
 decrease it.  The name parameter can be one of `src` (the
