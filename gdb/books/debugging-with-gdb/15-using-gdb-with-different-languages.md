@@ -97,14 +97,14 @@ D source file
 Objective-C source file
 
 - `.f`  
-.F    
+`.F`    
 Fortran source file
 
 - `.mod`  
 Modula-2 source file
 
 - `.s`  
-.S  
+`.S`  
 Assembler source file.  This actually behaves almost like C, but
 GDB does not skip over function prologues when stepping.
 
@@ -549,10 +549,7 @@ GDB expression handling can interpret most C++ expressions.
 > code.  See [Compilation](Compilation.html#Compilation).
 
 1.  Member function calls are allowed; you can use expressions like  
-    <pre>
-count = aml->GetOriginal(x, y)
-</pre>
-    
+    <pre>count = aml->GetOriginal(x, y)</pre>
 
 2.  While a member function is active (in the selected stack frame), your
 expressions have the same namespace available as the member function;
