@@ -26,11 +26,6 @@ instruction scheduling. If in doubt, recompile with ‘-g’ alone, and if this 
 please report it to us as a bug (including a test case!). See [Variables](Variables.html#Variables), 
 for more information about debugging optimized code.
 
-|                                                               |     |                                    |
-|---------------------------------------------------------------|-----|------------------------------------|
-| • [Inline Functions](Inline-Functions.html#Inline-Functions): |     | How GDB presents inlining          |
-| • [Tail Call Frames](Tail-Call-Frames.html#Tail-Call-Frames): |     | GDB analysis of jumps to functions |
-
 
 ## 11.1 Inline Functions
 
@@ -110,22 +105,16 @@ never used for this purpose) and the last known caller could have reached the kn
 multiple different jump sequences. In such case GDB still tries to show at least all the unambiguous 
 top tail callers and all the unambiguous bottom tail calees, if any.
 
-[]()
+-   `set debug entry-values`
 
-`set debug entry-values`
-
-[]()
-
-When set to on, enables printing of analysis messages for both frame argument values at function 
+    When set to on, enables printing of analysis messages for both frame argument values at function 
 entry and tail calls. It will show all the possible valid tail calls code paths it has considered. 
 It will also print the intersection of them with the final unambiguous (possibly partial or even 
 empty) code path result.
 
-`show debug entry-values`
+-   `show debug entry-values`
 
-[]()
-
-Show the current state of analysis messages printing for both frame argument values at function 
+    Show the current state of analysis messages printing for both frame argument values at function 
 entry and tail calls.
 
 The analysis messages for tail calls can for example show why the virtual tail call frame for 
