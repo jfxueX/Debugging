@@ -48,8 +48,9 @@ debugging format in GDB.
 
 ## 4.2 Starting your Program
 
--   `run`
+-   `run`  
     `r`
+
     Use the `run` command to start your program under GDB. You must first specify the program name 
 with an argument to GDB (see [Getting In and Out of GDB](Invocation.html#Invocation)), or by using 
 the `file` or `exec-file` command (see [Commands to Specify Files](Files.html#Files)).
@@ -111,6 +112,7 @@ symbols, GDB discards its symbol table, and reads it again. When it does this, G
 your current breakpoints.
 
 -   `start`
+
     The name of the main procedure can vary from language to language. With C or C`++`, the main 
 procedure name is always `main`, but other languages such as Ada do not require a specific name for 
 their main procedure. The debugger provides a convenient way to start the execution of the program 
@@ -135,12 +137,14 @@ completed the elaboration phase. Under these circumstances, either insert breakp
 elaboration code before running your program or use the `starti` command.
 
 -   `starti`
-    The ‘starti’ command does the equivalent of setting a temporary breakpoint at the first 
-instruction of a program’s execution and then invoking the ‘run’ command. For programs containing an 
-elaboration phase, the `starti` command will stop execution at the start of the elaboration phase.
 
--   `set exec-wrapper wrapper`
-    `show exec-wrapper`
+    The ‘starti’ command does the equivalent of setting a temporary breakpoint at the first 
+    instruction of a program’s execution and then invoking the ‘run’ command. For programs 
+    containing an elaboration phase, the `starti` command will stop execution at the start of the 
+    elaboration phase.
+
+-   `set exec-wrapper wrapper`  
+    `show exec-wrapper`  
     `unset exec-wrapper`
 
     When ‘exec-wrapper’ is set, the specified wrapper is used to launch programs for debugging. GDB 
@@ -161,10 +165,11 @@ elaboration phase, the `starti` command will stop execution at the start of the 
     ```
     This command is available when debugging locally on most targets, excluding DJGPP, Cygwin, MS Windows, and QNX Neutrino.
 
--   `set startup-with-shell`
-    `set startup-with-shell on`
-    `set startup-with-shell off`
+-   `set startup-with-shell`  
+    `set startup-with-shell on`  
+    `set startup-with-shell off`  
     `show startup-with-shell`
+
     On Unix systems, by default, if a shell is available on your target, GDB) uses it to start your 
     program. Arguments of the `run` command are passed to the shell, which does variable substitution, 
     expands wildcard characters and performs redirection of I/O. In some circumstances, it may be useful 
@@ -182,10 +187,11 @@ elaboration phase, the `starti` command will stop execution at the start of the 
     initialization file—such as .cshrc for C-shell, $.zshenv for the Z shell, or the file specified in 
     the ‘BASH\_ENV’ environment variable for BASH.
 
--   `set auto-connect-native-target`
-    `set auto-connect-native-target on`
-    `set auto-connect-native-target off`
+-   `set auto-connect-native-target`  
+    `set auto-connect-native-target on`  
+    `set auto-connect-native-target off`  
     `show auto-connect-native-target`
+
     By default, if not connected to any target yet (e.g., with `target remote`), the `run` command 
     starts your program as a native process under GDB, on your local machine. If you’re sure you don’t 
     want to debug programs on your local machine, you can tell GDB to not connect to the native target 
@@ -220,8 +226,9 @@ elaboration phase, the `starti` command will stop execution at the start of the 
     Examples of other commands that likewise respect the `auto-connect-native-target` setting: `attach`, 
     `info proc`, `info os`.
 
--   `set disable-randomization`
+-   `set disable-randomization`  
     `set disable-randomization on`
+
     This option (enabled by default in GDB) will turn off the native randomization of the virtual 
     address space of the started program. This option is useful for multiple debugging sessions to make 
     the execution better reproducible and memory addresses reusable across debugging sessions.
@@ -262,5 +269,6 @@ elaboration phase, the `starti` command will stop execution at the start of the 
     randomization is enabled).
 
 -   `show disable-randomization`
+
     Show the current setting of the explicit disable of the native randomization of the virtual address 
     space of the started program.
