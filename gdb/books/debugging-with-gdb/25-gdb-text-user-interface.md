@@ -307,7 +307,7 @@ possible or desirable to enable curses window management.
    group.  If the register window is not currently displayed this
    command will cause the register window to be displayed.  The list of
    register groups, as well as their order is target specific. The
-   following groups are available on `most` targets:
+   following `groups` are available on most targets:
 
    - `next`  
       Repeatedly selecting this group will cause the display to cycle
