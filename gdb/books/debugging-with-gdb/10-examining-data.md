@@ -43,70 +43,71 @@
 The usual way to examine data in your program is with the `print`
 command (abbreviated `p`), or its synonym `inspect`.  It
 evaluates and prints the value of an expression of the language your
-program is written in (see [Using GDB with
-Different Languages](Languages.html#Languages)).  It may also print the expression using a
-Python-based pretty-printer (see [Pretty Printing](Pretty-Printing.html#Pretty-Printing)).
+program is written in (see [Using GDB with Different Languages](Languages.html#Languages)).  
+It may also print the expression using a Python-based pretty-printer (see [Pretty Printing](Pretty-Printing.html#Pretty-Printing)).
 
--  `print expr`   
-`print /fexpr`  
-expr is an expression (in the source language).  By default the
-value of expr is printed in a format appropriate to its data type;
-you can choose a different format by specifying &lsquo;/f&rsquo;, where
-f is a letter specifying the format; see [Output
-Formats](Output-Formats.html#Output-Formats).
+- `print expr`
+  `print /fexpr`
 
--  `print`   
-`print /f`  
-    If you omit expr, GDB displays the last value again (from the
-*value history*; see [Value History](Value-History.html#Value-History)).  This allows you to
-conveniently inspect the same value in an alternative format.
+   expr is an expression (in the source language).  By default the
+   value of expr is printed in a format appropriate to its data type;
+   you can choose a different format by specifying &lsquo;/f&rsquo;, where
+   f is a letter specifying the format; see [Output Formats](Output-Formats.html#Output-Formats).
 
-    A more low-level way of examining data is with the `x` command.
-It examines data in memory at a specified address and prints it in a
-specified format.  See [Examining Memory](Memory.html#Memory).
+- `print`
+  `print /f`
 
-    If you are interested in information about types, or about how the
-fields of a struct or a class are declared, use the `ptype exp`
-command rather than `print`.  See [Examining the Symbol
-Table](Symbols.html#Symbols).
+   If you omit expr, GDB displays the last value again (from the
+   *value history*; see [Value History](Value-History.html#Value-History)).  This allows you to
+   conveniently inspect the same value in an alternative format.
 
-Another way of examining values of expressions and type information is
-through the Python extension command `explore` (available only if
-the GDB build is configured with `--with-python`).  It
-offers an interactive way to start at the highest level (or, the most
-abstract level) of the data type of an expression (or, the data type
-itself) and explore all the way down to leaf scalar values/fields
-embedded in the higher level data types.
+   A more low-level way of examining data is with the `x` command.
+   It examines data in memory at a specified address and prints it in a
+   specified format.  See [Examining Memory](Memory.html#Memory).
 
--  `explore arg`  
-    arg is either an expression (in the source language), or a type
-visible in the current context of the program being debugged.
+   If you are interested in information about types, or about how the
+   fields of a struct or a class are declared, use the `ptype exp`
+   command rather than `print`.  See [Examining the Symbol Table](Symbols.html#Symbols).
 
-    The working of the `explore` command can be illustrated with an
-example.  If a data type `struct ComplexStruct` is defined in your
-C program as
+   Another way of examining values of expressions and type information is
+   through the Python extension command `explore` (available only if
+   the GDB build is configured with `--with-python`).  It
+   offers an interactive way to start at the highest level (or, the most
+   abstract level) of the data type of an expression (or, the data type
+   itself) and explore all the way down to leaf scalar values/fields
+   embedded in the higher level data types.
 
-    struct SimpleStruct
-    {
-      int i;
-      double d;
-    };
-    
-    struct ComplexStruct
-    {
-      struct SimpleStruct *ss_p;
-      int arr[10];
-    };
-    
+- `explore arg`  
 
-    followed by variable declarations as
+   arg is either an expression (in the source language), or a type
+   visible in the current context of the program being debugged.
 
-    struct SimpleStruct ss = { 10, 1.11 };
-    struct ComplexStruct cs = { &ss, { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 } };
-    
+   The working of the `explore` command can be illustrated with an
+   example.  If a data type `struct ComplexStruct` is defined in your
+   C program as
 
-    then, the value of the variable `cs` can be explored using the
-`explore` command as follows.
+   ```c
+   struct SimpleStruct
+   {
+     int i;
+     double d;
+   };
+   
+   struct ComplexStruct
+   {
+     struct SimpleStruct *ss_p;
+     int arr[10];
+   };
+   ```
+
+   followed by variable declarations as
+
+   ```c
+   struct SimpleStruct ss = { 10, 1.11 };
+   struct ComplexStruct cs = { &ss, { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 } };
+   ```
+   then, the value of the variable `cs` can be explored using the
+   `explore` command as follows.
 
     (gdb) explore cs
     The value of `cs' is a struct/class of type `struct ComplexStruct' with
@@ -995,7 +996,7 @@ When GDB prints a symbolic address, it normally prints the
 closest earlier symbol plus an offset.  If that symbol does not uniquely
 identify the address (for example, it is a name whose scope is a single
 source file), you may need to clarify.  One way to do this is with
-`info line`, for example &lsquo;info line *0x4537&rsquo;.  Alternately,
+`info line`, for example &lsquo;info line \*0x4537&rsquo;.  Alternately,
 you can set GDB to print the source file and line number when
 it prints a symbolic address:
 
@@ -2873,7 +2874,7 @@ The address of each match found is printed as well as a count of the
 number of matches found.
 
 The address of the last value found is stored in convenience variable
-&lsquo;$_&rsquo;.
+&lsquo;$\_&rsquo;.
 A count of the number of matches is stored in &lsquo;$numfound&rsquo;.
 
 For example, if stopped at the `printf` in this function:

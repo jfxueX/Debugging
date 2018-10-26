@@ -1,0 +1,1 @@
+-   [Set default TUI layout in .gdbinit](set-default-tui-layout-in-gdbinit.md)
