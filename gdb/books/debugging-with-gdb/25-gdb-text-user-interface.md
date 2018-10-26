@@ -113,8 +113,8 @@ A status line above the command window shows the following information:
 
 The TUI installs several key bindings in the readline keymaps
 (see [Command Line Editing](Command-Line-Editing.html#Command-Line-Editing)).
-The following key bindings are installed for both TUI mode and the
-GDB standard mode.
+
+The following key bindings are installed for both TUI mode and the GDB standard mode.
 
 - `C-x C-a`  
   `C-x a`  
@@ -147,7 +147,8 @@ GDB standard mode.
 - `C-x s`  
    Switch in and out of the TUI SingleKey mode that binds single
    keys to GDB commands (see [TUI Single Key Mode](#253-tui-single-key-mode)).  
-   The following key bindings only work in the TUI mode:
+
+The following key bindings only work in the TUI mode:
 
 - `PgUp`  
    Scroll the active window one page up.
@@ -253,7 +254,7 @@ possible or desirable to enable curses window management.
 
 - `layout name`  
    Changes which TUI windows are displayed.  In each layout the command
-   window is always displayed, the name parameter controls which
+   window is always displayed, the `name` parameter controls which
    additional windows are displayed, and can be any of the following:
 
    - `next`  
@@ -278,7 +279,7 @@ possible or desirable to enable curses window management.
 
 - `focus name`  
    Changes which TUI window is currently active for scrolling.  The
-   name parameter can be any of the following:
+   `name` parameter can be any of the following:
 
    - `next`  
       Make the next window active for scrolling.
@@ -306,7 +307,7 @@ possible or desirable to enable curses window management.
    group.  If the register window is not currently displayed this
    command will cause the register window to be displayed.  The list of
    register groups, as well as their order is target specific. The
-   following groups are available on most targets:
+   following groups are available on `most` targets:
 
    - `next`  
       Repeatedly selecting this group will cause the display to cycle
@@ -370,7 +371,7 @@ Several configuration variables control the appearance of TUI windows.
 - `set tui border-mode mode`   
   `set tui active-border-mode mode`  
    Select the display attributes for the borders of the inactive windows
-   or the active window.  The mode can be one of the following:
+   or the active window.  The `mode` can be one of the following:
 
    - `normal`  
       Use normal attributes to display the border.
