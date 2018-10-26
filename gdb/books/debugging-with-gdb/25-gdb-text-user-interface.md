@@ -240,21 +240,21 @@ interpreter (see [The GDB/MI Interface](GDB_002fMI.html#GDB_002fMI)), most of
 these commands will fail with an error, because it would not be
 possible or desirable to enable curses window management.
 
-- `tui enable`  
-Activate TUI mode.  The last active TUI window layout will be used if
-TUI mode has prevsiouly been used in the current debugging session,
-otherwise a default layout is used.
+-  `tui enable`  
+    Activate TUI mode.  The last active TUI window layout will be used if
+    TUI mode has prevsiouly been used in the current debugging session,
+    otherwise a default layout is used.
 
-- `tui disable`  
-Disable TUI mode, returning to the console interpreter.
+-  `tui disable`  
+    Disable TUI mode, returning to the console interpreter.
 
-- `info win`  
-List and give the size of all displayed windows.
+-  `info win`  
+    List and give the size of all displayed windows.
 
-- `layout name`  
-Changes which TUI windows are displayed.  In each layout the command
-window is always displayed, the name parameter controls which
-additional windows are displayed, and can be any of the following:
+-  `layout name`  
+    Changes which TUI windows are displayed.  In each layout the command
+    window is always displayed, the name parameter controls which
+    additional windows are displayed, and can be any of the following:
 
     - `next`  
     Display the next layout.
@@ -272,13 +272,13 @@ additional windows are displayed, and can be any of the following:
     Display the source, assembly, and command windows.
 
     - `regs`  
-When in `src` layout display the register, source, and command
-windows.  When in `asm` or `split` layout display the
-register, assembler, and command windows.
+    When in `src` layout display the register, source, and command
+    windows.  When in `asm` or `split` layout display the
+    register, assembler, and command windows.
 
-    - `focus name`  
+- `focus name`  
     Changes which TUI window is currently active for scrolling.  The
-name parameter can be any of the following:
+    name parameter can be any of the following:
 
     - `next`  
     Make the next window active for scrolling.
@@ -298,24 +298,24 @@ name parameter can be any of the following:
     - `cmd`  
     Make the command window active for scrolling.
 
-- `refresh`  
-Refresh the screen.  This is similar to typing C-L.
+-  `refresh`  
+    Refresh the screen.  This is similar to typing C-L.
 
-- `tui reg group`  
-Changes the register group displayed in the tui register window to
-group.  If the register window is not currently displayed this
-command will cause the register window to be displayed.  The list of
-register groups, as well as their order is target specific. The
-following groups are available on most targets:
+-  `tui reg group`  
+    Changes the register group displayed in the tui register window to
+    group.  If the register window is not currently displayed this
+    command will cause the register window to be displayed.  The list of
+    register groups, as well as their order is target specific. The
+    following groups are available on most targets:
 
     - `next`  
     Repeatedly selecting this group will cause the display to cycle
-through all of the available register groups.
+    through all of the available register groups.
 
     - `prev`  
     Repeatedly selecting this group will cause the display to cycle
-through all of the available register groups in the reverse order to
-next.
+    through all of the available register groups in the reverse order to
+    next.
 
     - `general`  
     Display the general registers.
@@ -332,21 +332,21 @@ next.
     - `all`  
     Display all registers.
 
-- `update`  
-Update the source window and the current execution point.
+-  `update`  
+    Update the source window and the current execution point.
 
-- `winheight name +count`  
-`winheight name -count`  
-Change the height of the window name by count
-lines.  Positive counts increase the height, while negative counts
-decrease it.  The name parameter can be one of `src` (the
-source window), `cmd` (the command window), `asm` (the
-disassembly window), or `regs` (the register display window).
+-  `winheight name +count`  
+   `winheight name -count`  
+    Change the height of the window name by count
+    lines.  Positive counts increase the height, while negative counts
+    decrease it.  The name parameter can be one of `src` (the
+    source window), `cmd` (the command window), `asm` (the
+    disassembly window), or `regs` (the register display window).
 
-- `tabset nchars`  
-Set the width of tab stops to be nchars characters.  This
-setting affects the display of TAB characters in the source and
-assembly windows.
+-  `tabset nchars`  
+    Set the width of tab stops to be nchars characters.  This
+    setting affects the display of TAB characters in the source and
+    assembly windows.
 
 
 ## 25.5 TUI Configuration Variables
