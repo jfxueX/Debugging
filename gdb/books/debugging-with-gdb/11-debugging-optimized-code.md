@@ -67,8 +67,6 @@ line and print a variable where your program stored the return value.
 
 ## 11.2 Tail Call Frames
 
-[]()
-
 Function `B` can call function `C` in its very last statement. In unoptimized compilation the call 
 of `C` is immediately followed by return instruction at the end of `B` code. Optimizing compiler may 
 replace the call and return in function `B` into one jump to function `C` instead. Such use of a 
@@ -87,7 +85,7 @@ this information.
 info frame command (see [Frame Info](Frame-Info.html#Frame-Info)) will indicate the tail call frame 
 kind by text `tail call frame` such as in this sample GDB output:
 
-``` smallexample
+```gdb
 (gdb) x/i $pc - 2
    0x40066b <b(int, double)+11>: jmp 0x400640 <c(int, double)>
 (gdb) info frame

@@ -48,10 +48,10 @@ debugging format in GDB.
 
 ## 4.2 Starting your Program
 
--   `run`  
-    `r`
+- `run`  
+  `r`
 
-    Use the `run` command to start your program under GDB. You must first specify the program name 
+   Use the `run` command to start your program under GDB. You must first specify the program name 
 with an argument to GDB (see [Getting In and Out of GDB](Invocation.html#Invocation)), or by using 
 the `file` or `exec-file` command (see [Commands to Specify Files](Files.html#Files)).
 
