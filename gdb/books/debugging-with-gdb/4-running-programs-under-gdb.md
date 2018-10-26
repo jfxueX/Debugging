@@ -15,14 +15,14 @@ it. This debugging information is stored in the object file; it describes the da
 variable or function and the correspondence between source line numbers and addresses in the 
 executable code.
 
-To request debugging information, specify the ‘-g’ option when you run the compiler.
+To request debugging information, specify the `-g` option when you run the compiler.
 
-Programs that are to be shipped to your customers are compiled with optimizations, using the ‘-O’ 
-compiler option. However, some compilers are unable to handle the ‘-g’ and ‘-O’ options together. 
+Programs that are to be shipped to your customers are compiled with optimizations, using the `-O` 
+compiler option. However, some compilers are unable to handle the `-g` and `-O` options together. 
 Using those compilers, you cannot generate optimized executables containing debugging information.
 
-GCC, the GNU C/C++ compiler, supports ‘-g’ with or without ‘-O’, making it possible to debug 
-optimized code. We recommend that you *always* use ‘-g’ whenever you compile a program. You may 
+GCC, the GNU C/C++ compiler, supports `-g` with or without `-O`, making it possible to debug 
+optimized code. We recommend that you *always* use `-g` whenever you compile a program. You may 
 think your program is correct, but there is no sense in pushing your luck. For more information, see 
 [Optimized Code](Optimized-Code.html#Optimized-Code).
 
@@ -30,11 +30,11 @@ Older versions of the GNU C compiler permitted a variant option ‘<span class="
 for debugging information. GDB no longer supports this format; if your GNU C compiler has 
 this option, do not use it.
 
-GDB knows about preprocessor macros and can show you their expansion (see [Macros]
-(Macros.html#Macros)). Most compilers do not include information about preprocessor macros in the 
+GDB knows about preprocessor macros and can show you their expansion (see [Macros](Macros.html#Macros)). 
+Most compilers do not include information about preprocessor macros in the 
 debugging information if you specify the -g flag alone. Version 3.1 and later of GCC, the GNU C 
 compiler, provides macro information if you are using the DWARF debugging format, and specify the 
-option -g3.
+option `-g3`.
 
 See [Options for Debugging Your Program or GCC](http://gcc.gnu.org/onlinedocs/gcc/Debugging-Options.html#Debugging-Options) 
 in Using the GNU Compiler Collection (GCC), for more information on GCC options affecting debug 
