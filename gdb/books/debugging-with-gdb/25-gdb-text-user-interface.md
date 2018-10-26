@@ -353,42 +353,42 @@ possible or desirable to enable curses window management.
 
 Several configuration variables control the appearance of TUI windows.
 
-- `set tui border-kind kind`  
-Select the border appearance for the source, assembly and register windows.
-The possible values are the following:
+-  `set tui border-kind kind`  
+    Select the border appearance for the source, assembly and register windows.
+    The possible values are the following:
 
-    - `space`  
-    Use a space character to draw the border.
+    -  `space`  
+        Use a space character to draw the border.
 
-    - `ascii`  
-    Use ASCII characters &lsquo;+&rsquo;, &lsquo;-&rsquo; and &lsquo;|&rsquo; to draw the border.
+    -  `ascii`  
+        Use ASCII characters &lsquo;+&rsquo;, &lsquo;-&rsquo; and &lsquo;|&rsquo; to draw the border.
 
-    - `acs`  
-    Use the Alternate Character Set to draw the border.  The border is
-drawn using character line graphics if the terminal supports them.
+    -  `acs`  
+        Use the Alternate Character Set to draw the border.  The border is
+        drawn using character line graphics if the terminal supports them.
 
-- `set tui border-mode mode`   
-- `set tui active-border-mode mode`  
-Select the display attributes for the borders of the inactive windows
-or the active window.  The mode can be one of the following:
+-  `set tui border-mode mode`   
+   `set tui active-border-mode mode`  
+    Select the display attributes for the borders of the inactive windows
+    or the active window.  The mode can be one of the following:
 
-    - `normal`  
-    Use normal attributes to display the border.
+    -  `normal`  
+        Use normal attributes to display the border.
 
-    - `standout`  
-    Use standout mode.
+    -  `standout`  
+        Use standout mode.
 
-    - `reverse`  
-    Use reverse video mode.
+    -  `reverse`  
+        Use reverse video mode.
 
-    - `half`  
-    Use half bright mode.
+    -  `half`  
+        Use half bright mode.
 
-    - `half-standout`  
-    Use half bright and standout mode.
+    -  `half-standout`  
+        Use half bright and standout mode.
 
-    - `bold`  
-    Use extra bright or bold mode.
+    -  `bold`  
+        Use extra bright or bold mode.
 
-    - `bold-standout`  
-    Use extra bright or bold and standout mode.
+    -  `bold-standout`  
+        Use extra bright or bold and standout mode.
