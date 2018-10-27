@@ -294,7 +294,7 @@ We choose three particular definitions of that function name:
      breakpoints.
     (gdb)
 
-- `set multiple-symbols mode`
+- `set multiple-symbols mode`  
    This option allows you to adjust the debugger behavior when an expression
    is ambiguous.
 
@@ -313,7 +313,7 @@ We choose three particular definitions of that function name:
    Finally, when mode is set to `cancel`, the debugger reports
    an error due to the ambiguity and the command is aborted.
 
-- `show multiple-symbols`
+- `show multiple-symbols`  
    Show the current value of the `multiple-symbols` setting.
 
 
