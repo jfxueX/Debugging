@@ -295,8 +295,8 @@ We choose three particular definitions of that function name:
     (gdb)
 
 - `set multiple-symbols mode`
-   This option allows you to adjust the debugger behavior when an expression
-   is ambiguous.
+    This option allows you to adjust the debugger behavior when an expression
+    is ambiguous.
 
    By default, mode is set to `all`.  If the command with which
    the expression is used allows more than one choice, then GDB
