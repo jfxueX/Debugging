@@ -46,7 +46,7 @@ evaluates and prints the value of an expression of the language your
 program is written in (see [Using GDB with Different Languages](Languages.html#Languages)).  
 It may also print the expression using a Python-based pretty-printer (see [Pretty Printing](Pretty-Printing.html#Pretty-Printing)).
 
-- `print expr`
+- `print expr`  
   `print /fexpr`
 
    expr is an expression (in the source language).  By default the
@@ -54,7 +54,7 @@ It may also print the expression using a Python-based pretty-printer (see [Prett
    you can choose a different format by specifying &lsquo;/f&rsquo;, where
    f is a letter specifying the format; see [Output Formats](Output-Formats.html#Output-Formats).
 
-- `print`
+- `print`  
   `print /f`
 
    If you omit expr, GDB displays the last value again (from the
@@ -109,13 +109,13 @@ It may also print the expression using a Python-based pretty-printer (see [Prett
    then, the value of the variable `cs` can be explored using the
    `explore` command as follows.
 
-   ```
+   ```gdb
    (gdb) explore cs
-   The value of `cs' is a struct/class of type `struct ComplexStruct' with
+   The value of 'cs' is a struct/class of type 'struct ComplexStruct' with
    the following fields:
     
-   ss_p = <Enter 0 to explore this field of type `struct SimpleStruct *'>
-   arr = <Enter 1 to explore this field of type `int [10]'>
+   ss_p = <Enter 0 to explore this field of type 'struct SimpleStruct *'>
+   arr = <Enter 1 to explore this field of type 'int [10]'>
    ```
 
    Enter the field number of choice:
@@ -129,29 +129,33 @@ value, hence you enter `y`.  If you enter `n`, then you will
 be asked if it were pointing to an array of values, in which case this
 field will be explored as if it were an array.
 
-    `cs.ss_p' is a pointer to a value of type `struct SimpleStruct'
-    Continue exploring it as a pointer to a single value [y/n]: y
-    The value of `*(cs.ss_p)' is a struct/class of type `struct
-    SimpleStruct' with the following fields:
-    
-      i = 10 .. (Value of type `int')
-      d = 1.1100000000000001 .. (Value of type `double')
-    
-    Press enter to return to parent value:
+```gdb
+'cs.ss_p' is a pointer to a value of type 'struct SimpleStruct'
+Continue exploring it as a pointer to a single value [y/n]: y
+The value of '*(cs.ss_p)' is a struct/class of type 'struct SimpleStruct' 
+with the following fields:
+
+  i = 10 .. (Value of type `int')
+  d = 1.1100000000000001 .. (Value of type `double')
+
+Press enter to return to parent value:
+```
 
 If the field `arr` of `cs` was chosen for exploration by
 entering `1` earlier, then since it is as array, you will be
 prompted to enter the index of the element in the array that you want
 to explore.
 
-    `cs.arr` is an array of `int`.
-    Enter the index of the element you want to explore in `cs.arr': 5
-    
-    `(cs.arr)[5]' is a scalar value of type `int'.
-    
-    (cs.arr)[5] = 4
-    
-    Press enter to return to parent value: 
+```gdb
+'cs.arr' is an array of 'int'.
+Enter the index of the element you want to explore in 'cs.arr': 5
+
+'(cs.arr)[5]' is a scalar value of type 'int'.
+
+(cs.arr)[5] = 4
+
+Press enter to return to parent value: 
+```
 
 In general, at any stage of exploration, you can go deeper towards the
 leaf values by responding to the prompts appropriately, or hit the
@@ -166,7 +170,9 @@ same example as above, your can explore the type
 `struct ComplexStruct` by passing the argument
 `struct ComplexStruct` to the `explore` command.
 
-    (gdb) explore struct ComplexStruct
+```gdb
+(gdb) explore struct ComplexStruct
+```
 
 By responding to the prompts appropriately in the subsequent interactive
 session, you can explore the type `struct ComplexStruct` in a
@@ -230,15 +236,15 @@ at that address in memory.
 GDB supports these operators, in addition to those common
 to programming languages:
 
-- `@`
+- `@`  
    `@` is a binary operator for treating parts of memory as arrays.
    See [Artificial Arrays](Arrays.html#Arrays), for more information.
 
-- `::`
+- `::`  
    `::` allows you to specify a variable in terms of the file or
    function where it is defined.  See [Program Variables](Variables.html#Variables).
 
-- `{type} addr`
+- `{type} addr`  
    Refers to an object of type type stored at address addr in
    memory.  The address addr may be any expression whose value is
    an integer or pointer (but parentheses are required around binary
@@ -366,7 +372,9 @@ static variable.  In the case of file names, you can use quotes to
 make sure GDB parses the file name as a single word&mdash;for example,
 to print a global value of `x` defined in f2.c:
 
-    (gdb) p 'f2.c'::x
+```gdb
+(gdb) p 'f2.c'::x
+```
 
 The `::` notation is normally used for referring to
 static variables, since you typically disambiguate uses of local variables
@@ -395,18 +403,20 @@ For example, if there is a breakpoint at the commented line,
 here is what you might see
 when the program stops after executing the call `bar(0)`:
 
-    (gdb) p a
-    $1 = 10
-    (gdb) p bar::a
-    $2 = 5
-    (gdb) up 2
-    #2  0x080483d0 in foo (a=5) at foobar.c:12
-    (gdb) p a
-    $3 = 5
-    (gdb) p bar::a
-    $4 = 0
+```gdb
+(gdb) p a
+$1 = 10
+(gdb) p bar::a
+$2 = 5
+(gdb) up 2
+#2  0x080483d0 in foo (a=5) at foobar.c:12
+(gdb) p a
+$3 = 5
+(gdb) p bar::a
+$4 = 0
+```
 
-These uses of &lsquo;::&rsquo; are very rarely in conflict with the very
+These uses of `::` are very rarely in conflict with the very
 similar use of the same notation in C++.  When they are in
 conflict, the C++ meaning takes precedence; however, this can be
 overridden by quoting the file or function name with single quotes.
@@ -416,12 +426,14 @@ that has a field named `includefile`, and there is also an
 include file named includefile that defines a variable,
 `some_global`.
 
+```gdb
     (gdb) p includefile
     $1 = 23
     (gdb) p includefile::some_global
     A syntax error in expression, near `'.
     (gdb) p 'includefile'::some_global
     $2 = 27
+```
 
 > *Warning:* Occasionally, a local variable may appear to have the
 > wrong value at certain points in a function&mdash;just after entry to a new
@@ -447,7 +459,9 @@ offered by the debug info format used by the compiler, GDB
 might not be able to display values for such local variables.  If that
 happens, GDB will print a message like this:
 
-    No symbol "foo" in current context.
+```gdb
+No symbol "foo" in current context.
+```
 
 To solve such problems, either recompile without optimizations, or use a
 different debug info format, if the compiler supports several such
@@ -457,21 +471,23 @@ info formats that are best suited to C++ programs.
 
 If you ask to print an object whose contents are unknown to
 GDB, e.g., because its data type is not completely specified
-by the debug information, GDB will say &lsquo;<incomplete
-type>&rsquo;.  See [incomplete type](Symbols.html#Symbols), for more about this.
+by the debug information, GDB will say `<incomplete
+type>`.  See [incomplete type](Symbols.html#Symbols), for more about this.
 
 If you try to examine or use the value of a (global) variable for
 which GDB has no type information, e.g., because the program
 includes no debug information, GDB displays an error message.
 See [unknown type](Symbols.html#Symbols), for more about unknown types.  If you
 cast the variable to its declared type, GDB gets the
-variable&rsquo;s value using the cast-to type as the variable&rsquo;s type.  For
+variable's value using the cast-to type as the variable's type.  For
 example, in a C program:
 
-      (gdb) p var
-      'var' has unknown type; cast it to its declared type
-      (gdb) p (float) var
-      $1 = 3.14
+```gdb
+(gdb) p var
+'var' has unknown type; cast it to its declared type
+(gdb) p (float) var
+$1 = 3.14
+```
 
 If you append @entry string to a function parameter name you get its
 value at the time the function got called.  If the value is not available an
@@ -479,14 +495,16 @@ error message is printed.  Entry values are available only with some compilers.
 Entry values are normally also printed at the function parameter list according
 to [set print entry-values](Print-Settings.html#set-print-entry_002dvalues).
 
-    Breakpoint 1, d (i=30) at gdb.base/entry-value.c:29
-    29	  i++;
-    (gdb) next
-    30	  e (i);
-    (gdb) print i
-    $1 = 31
-    (gdb) print i@entry
-    $2 = 30
+```gdb
+Breakpoint 1, d (i=30) at gdb.base/entry-value.c:29
+29	  i++;
+(gdb) next
+30	  e (i);
+(gdb) print i
+$1 = 31
+(gdb) print i@entry
+$2 = 30
+```
 
 Strings are identified as arrays of `char` values without specified
 signedness.  Arrays of either `signed char` or `unsigned char` get
@@ -495,15 +513,19 @@ printed as arrays of 1 byte sized integers.  `-fsigned-char` or
 defines literal string type `"char"` as `char` without a sign.
 For program code
 
-    char var0[] = "A";
-    signed char var1[] = "A";
+```c
+char var0[] = "A";
+signed char var1[] = "A";
+```
 
 You get during debugging
 
-    (gdb) print var0
-    $1 = "A"
-    (gdb) print var1
-    $2 = {65 'A', 0 '\0'}
+```gdb
+(gdb) print var0
+$1 = "A"
+(gdb) print var1
+$2 = {65 'A', 0 '\0'}
+```
 
 
 ## 10.4 Artificial Arrays
@@ -529,7 +551,9 @@ int *array = (int *) malloc (len * sizeof (int));
 
 you can print the contents of `array` with
 
-    p *array@len
+```gdb
+p *array@len
+```
 
 The left operand of `@` must reside in memory.  Array values made
 with `@` in this way behave just like other arrays in terms of
@@ -541,15 +565,19 @@ Another way to create an artificial array is to use a cast.
 This re-interprets a value as if it were an array.
 The value need not be in memory:
 
-    (gdb) p/x (short[2])0x12345678
-    $1 = {0x1234, 0x5678}
+```gdb
+(gdb) p/x (short[2])0x12345678
+$1 = {0x1234, 0x5678}
+```
 
 As a convenience, if you leave the array length out (as in
 `(type[])value`) GDB calculates the size to fill
 the value (as `sizeof(value)/sizeof(type)`:
 
-    (gdb) p/x (short[])0x12345678
-    $2 = {0x1234, 0x5678}
+```gdb
+(gdb) p/x (short[])0x12345678
+$2 = {0x1234, 0x5678}
+```
 
 Sometimes the artificial array mechanism is not quite enough; in
 moderately complex data structures, the elements of interest may not
@@ -562,10 +590,12 @@ instance, suppose you have an array `dtab` of pointers to
 structures, and you are interested in the values of a field `fv`
 in each structure.  Here is an example of what you might type:
 
-    set $i = 0
-    p dtab[$i++]->fv
-    RETRET
-    &hellip;
+```gdb
+set $i = 0
+p dtab[$i++]->fv
+RETRET
+&hellip;
+```
 
 
 ## 10.5 Output Formats
@@ -581,29 +611,29 @@ already computed.  This is done by starting the arguments of the
 `print` command with a slash and a format letter.  The format
 letters supported are:
 
-- `x`
+- `x`  
    Regard the bits of the value as an integer, and print the integer in
    hexadecimal.
 
-- `d`
+- `d`  
    Print as integer in signed decimal.
 
-- `u`
+- `u`  
    Print as integer in unsigned decimal.
 
-- `o`
+- `o`  
    Print as integer in octal.
 
-- `t`
+- `t`  
    Print as integer in binary.  The letter `t` stands for 'two'.
    [10](#FOOT10)
 
-- `a`
+- `a`  
    Print as an address, both absolute in hexadecimal and as an offset from
    the nearest preceding symbol.  You can use this format used to discover
    where (in what function) an unknown address is located:
 
-   ```
+   ```gdb
    (gdb) p/a 0x54320
    $3 = 0x54320 <_initialize_vx+396>
        
@@ -612,7 +642,7 @@ letters supported are:
    See [info symbol](Symbols.html#Symbols).
    ```
 
-- `c`
+- `c`  
    Regard as an integer and print it as a character constant.  This
    prints both the numerical value and its character representation.  The
    character representation is replaced with the octal escape `\nnn`
@@ -623,11 +653,11 @@ letters supported are:
    constants.  Single-byte members of vectors are displayed as integer
    data.
 
-- `f`
+- `f`  
    Regard the bits of the value as a floating point number and print
    using typical floating point syntax.
 
-- `s`
+- `s`  
    Regard as a string, if possible.  With this format, pointers to single-byte
    data are displayed as null-terminated strings and arrays of single-byte data
    are displayed as fixed-length strings.  Other values are displayed in their
@@ -638,12 +668,12 @@ letters supported are:
    strings.  Single-byte members of a vector are displayed as an integer
    array.
 
-- `z`
+- `z`  
    Like `x` formatting, the value is treated as an integer and
    printed as hexadecimal, but leading zeros are printed to pad the value
    to the size of the integer type.
 
-- `r`
+- `r`  
    Print using the 'raw' formatting.  By default, GDB will
    use a Python-based pretty-printer, if one is available (see [Pretty Printing](Pretty-Printing.html#Pretty-Printing)).
    This typically results in a higher-level display of the
@@ -652,7 +682,9 @@ letters supported are:
 
 For example, to print the program counter in hex (see [Registers](Registers.html#Registers)), type
 
+```gdb
     p/x $pc
+```
 
 Note that no space is required before the slash; this is because command
 names in GDB cannot contain a slash.
@@ -676,9 +708,9 @@ see [Examining Memory](Memory.html#Memory).
 You can use the command `x` (for 'eXamine') to examine memory in
 any of several formats, independently of your program's data types.
 
-- `x/nfuaddr`
-  `x addr`
-  `x`
+- `x/nfuaddr`  
+  `x addr`  
+  `x`  
    Use the `x` command to examine memory.
 
 `n`, `f`, and `u` *are all optional parameters* that specify how
@@ -687,52 +719,65 @@ expression giving the address where you want to start displaying memory.
 If you use defaults for `nfu`, you need not type the slash `/`.
 Several commands set convenient defaults for addr.
 
-- `n`, *the repeat count*
-   The repeat count is a decimal integer; the default is 1.  It specifies
-   how much memory (counting by units u) to display.  If a negative
-   number is specified, memory is examined backward from addr.
+- `n`, the repeat count
 
-- `f`, *the display format*
+   The repeat count is a decimal integer; the **default** is 1.  It specifies
+   how much memory (counting by units `u`) to display.
+
+   If a negative number is specified, memory is examined backward from addr.
+
+- `f`, the display format
+
    The display format is one of the formats used by `print`
-   (`x`, `d`, `u`, `o`, `t`, `a`, `c`,
-   `f`, `s`), and in addition `i` (for machine instructions).
-   The default is `x` (hexadecimal) initially.  The default changes
+   (`x`, `d`, `u`, `o`, `t`, `a`, `c`, `f`, `s`), 
+   and in addition `i` (for machine instructions).
+
+   The **default** is `x` (hexadecimal) initially.  The default changes
    each time you use either `x` or `print`.
 
-- `u`, *the unit size*
-      The unit size is any of
+- `u`, the unit size
 
-      - `b`
-         Bytes.
+   The **default** is `w`. The unit size is any of
 
-      - `h`
-         Halfwords (two bytes).
+   - `b`  
+      Bytes.
 
-      - `w`
-         Words (four bytes).  This is the initial default.
+   - `h`  
+      Halfwords (two bytes).
 
-      - `g`
-         Giant words (eight bytes).
+   - `w`  
+      Words (four bytes).  This is the initial default.
+
+   - `g`  
+      Giant words (eight bytes).
 
    Each time you specify a unit size with `x`, that size becomes the
-   default unit the next time you use `x`.  For the `i` format,
-   the unit size is ignored and is normally not written.  For the `s` format,
+   default unit the next time you use `x`.
+
+   For the `i` format,
+   the unit size is ignored and is normally not written.
+
+   For the `s` format,
    the unit size defaults to `b`, unless it is explicitly given.
-   Use x /hs to display 16-bit char strings and x /ws to display
-   32-bit strings.  The next use of x /s will again display 8-bit strings.
+   Use `x /hs` to display 16-bit char strings and `x /ws` to display
+   32-bit strings.  The next use of `x /s` will again display 8-bit strings.
    Note that the results depend on the programming language of the
    current compilation unit.  If the language is C, the `s`
    modifier will use the UTF-16 encoding while `w` will use
    UTF-32.  The encoding is set by the programming language and cannot
    be altered.
 
--  addr, *starting display address*
-   addr is the address where you want GDB to begin displaying
-   memory.  The expression need not have a pointer value (though it may);
+-  `addr`, starting display address
+
+   `addr` is the address where you want GDB to begin displaying memory.
+
+   The expression need not have a pointer value (though it may);
    it is always interpreted as an integer address of a byte of memory.
-   See [Expressions](Expressions.html#Expressions), for more information on expressions.  The default for
-   addr is usually just after the last address examined&mdash;but several
-   other commands also set the default address: `info breakpoints` (to
+   See [Expressions](Expressions.html#Expressions), 
+   for more information on expressions.
+
+   The default for addr is usually just after the last address examined&mdash;
+   but several other commands also set the default address: `info breakpoints` (to
    the address of the last breakpoint listed), `info line` (to the
    starting address of a line), and `print` (if you use it to display
    a value from memory).
@@ -812,18 +857,20 @@ the addressable memory unit size of the target.  For most systems,
 addressable memory unit is a synonym of byte.
 
 When you are debugging a program running on a remote target machine
-(see [Remote Debugging](Remote-Debugging.html#Remote-Debugging)), you may wish to verify the program's image
+(see [Remote Debugging](Remote-Debugging.html#Remote-Debugging)), 
+you may wish to verify the program's image
 in the remote machine's memory against the executable file you
 downloaded to the target.  Or, on any target, you may want to check
 whether the program has corrupted its own read-only sections.  The
 `compare-sections` command is provided for such situations.
 
-`compare-sections [section-name|`-r`]`
-Compare the data of a loadable section section-name in the
-executable file of the program being debugged with the same section in
-the target machine's memory, and report any mismatches.  With no
-arguments, compares all loadable sections.  With an argument of
-`-r`, compares all loadable read-only sections.
+- `compare-sections [section-name|-r]`
+
+   Compare the data of a loadable section section-name in the
+   executable file of the program being debugged with the same section in
+   the target machine's memory, and report any mismatches.  With no
+   arguments, compares all loadable sections.  With an argument of
+   `-r`, compares all loadable read-only sections.
 
 Note: for remote targets, this command can be accelerated if the
 target supports computing the CRC checksum of a block of memory
@@ -850,20 +897,23 @@ specification&mdash;it uses `x` if you specify either the `i`
 or `s` format, or a unit size; otherwise it uses `print`.
 
 - `display expr`
+
    Add the expression expr to the list of expressions to display
    each time your program stops.  See [Expressions](Expressions.html#Expressions).
 
    `display` does not repeat if you press RET again after using it.
 
 - `display/fmtexpr`
-   For fmt specifying only a display format and not a size or
-   count, add the expression expr to the auto-display list but
+
+   For `fmt` specifying only a display format and not a size or
+   count, add the expression `expr` to the auto-display list but
    arrange to display it each time in the specified format fmt.
    See [Output Formats](Output-Formats.html#Output-Formats).
 
 - `display/fmtaddr`
-   For fmt `i` or `s`, or including a unit-size or a
-   number of units, add the expression addr as a memory address to
+
+   For `fmt` `i` or `s`, or including a unit-size or a
+   number of units, add the expression `addr` as a memory address to
    be examined each time your program stops.  Examining means in effect
    doing `x/fmtaddr`.  See [Examining Memory](Memory.html#Memory).
 
@@ -871,28 +921,35 @@ or `s` format, or a unit size; otherwise it uses `print`.
    instruction about to be executed each time execution stops (`$pc`
    is a common name for the program counter; see [Registers](Registers.html#Registers)).
 
-- `undisplay dnums&hellip;`
+- `undisplay dnums&hellip;`  
 - `delete display dnums&hellip;`
-   Remove items from the list of expressions to display.  Specify the
-   numbers of the displays that you want affected with the command
-   argument dnums.  It can be a single display number, one of the
+
+   Remove items from the list of expressions to display.
+
+   Specify the numbers of the displays that you want affected with the command
+   argument `dnums`.  It can be a single display number, one of the
    numbers shown in the first field of the `info display` display;
    or it could be a range of display numbers, as in `2-4`.
 
-- `undisplay` does not repeat if you press RET after using it.
+   `undisplay` does not repeat if you press RET after using it.
    (Otherwise you would just get the error `No display number &hellip;`.)
 
 - `disable display dnums&hellip;`
-   Disable the display of item numbers dnums.  A disabled display
-   item is not printed automatically, but is not forgotten.  It may be
+
+   Disable the display of item numbers `dnums`.
+
+   A disabled display item is not printed automatically, but is not forgotten.  It may be
    enabled again later.  Specify the numbers of the displays that you
-   want affected with the command argument dnums.  It can be a
+   want affected with the command argument `dnums`.  It can be a
    single display number, one of the numbers shown in the first field of
    the `info display` display; or it could be a range of display
    numbers, as in `2-4`.
 
 - `enable display dnums&hellip;`
-   Enable display of item numbers dnums.  It becomes effective once
+
+   Enable display of item numbers `dnums`.
+
+   It becomes effective once
    again in auto display of its expression, until you specify otherwise.
    Specify the numbers of the displays that you want affected with the
    command argument dnums.  It can be a single display number, one
@@ -900,10 +957,12 @@ or `s` format, or a unit size; otherwise it uses `print`.
    display; or it could be a range of display numbers, as in `2-4`.
 
 - `display`
+
    Display the current values of the expressions on the list, just as is
    done when your program stops.
 
 - `info display`
+
    Print the list of expressions previously set up to display
    automatically, each one with its item number, but without showing the
    values.  This includes disabled expressions, which are marked as such.
@@ -929,12 +988,15 @@ and symbols are printed.
 
 These settings are useful for debugging programs in any language:
 
-- `set print address` 
+- `set print address`   
 - `set print address on`
+
    GDB prints memory addresses showing the location of stack
    traces, structure values, pointer values, breakpoints, and so forth,
-   even when it also displays the contents of those addresses.  The default
-   is `on`.  For example, this is what a stack frame display looks like with
+   even when it also displays the contents of those addresses.
+
+   The default is `on`.
+   For example, this is what a stack frame display looks like with
    `set print address on`:
 
    ```    
@@ -945,7 +1007,10 @@ These settings are useful for debugging programs in any language:
    ```    
 
 - `set print address off`
-   Do not print addresses when displaying their contents.  For example,
+
+   Do not print addresses when displaying their contents.
+
+   For example,
    this is the same stack frame displayed with `set print address off`:
 
    ```    
@@ -961,6 +1026,7 @@ These settings are useful for debugging programs in any language:
    all machines&mdash;whether or not they involve pointer arguments.
 
 `show print address`
+
    Show whether or not addresses are to be printed.
 
    When GDB prints a symbolic address, it normally prints the
@@ -972,14 +1038,17 @@ These settings are useful for debugging programs in any language:
    it prints a symbolic address:
 
 `set print symbol-filename on`
+
    Tell GDB to print the source file name and line number of a
    symbol in the symbolic form of an address.
 
 `set print symbol-filename off`
+
    Do not print source file name and line number of a symbol.  This is the
    default.
 
 `show print symbol-filename`
+
    Show whether or not GDB will print the source file name and
    line number of a symbol in the symbolic form of an address.
 
@@ -990,15 +1059,19 @@ These settings are useful for debugging programs in any language:
    Also, you may wish to see the symbolic form only if the address being
    printed is reasonably close to the closest earlier symbol:
 
-- `set print max-symbolic-offset max-offset` 
+- `set print max-symbolic-offset max-offset`   
 - `set print max-symbolic-offset unlimited`
+
    Tell GDB to only display the symbolic form of an address if the
    offset between the closest earlier symbol and the address is less than
-   max-offset.  The default is `unlimited`, which tells GDB
+   max-offset.
+
+   The default is `unlimited`, which tells GDB
    to always print the symbolic form of an address if any symbol precedes
    it.  Zero is equivalent to `unlimited`.
 
 - `show print max-symbolic-offset`
+
    Ask how large the maximum offset is that GDB prints in a
    symbolic address.
 
@@ -1023,48 +1096,61 @@ These settings are useful for debugging programs in any language:
    `set print symbol on`:
 
 - `set print symbol on`
+
    Tell GDB to print the symbol corresponding to an address, if
    one exists.
 
 - `set print symbol off`
-   Tell GDB not to print the symbol corresponding to an
-   address.  In this mode, GDB will still print the symbol
+
+   Tell GDB not to print the symbol corresponding to an address.
+
+   In this mode, GDB will still print the symbol
    corresponding to pointers to functions.  This is the default.
 
 - `show print symbol`
-   Show whether GDB will display the symbol corresponding to an
-   address.
+
+   Show whether GDB will display the symbol corresponding to an address.
 
    Other settings control how different kinds of objects are printed:
 
-- `set print array`
+- `set print array`  
 - `set print array on`
-   Pretty print arrays.  This format is more convenient to read,
-   but uses more space.  The default is off.
+
+   Pretty print arrays.
+
+   This format is more convenient to read, but uses more space.  The default is off.
 
 - `set print array off`
+
    Return to compressed format for arrays.
 
 - `show print array`
+
    Show whether compressed or pretty format is selected for displaying
    arrays.
 
-- `set print array-indexes`
+- `set print array-indexes`  
 - `set print array-indexes on`
-   Print the index of each element when displaying arrays.  May be more
-   convenient to locate a given element in the array or quickly find the
+
+   Print the index of each element when displaying arrays.
+
+   May be more convenient to locate a given element in the array or quickly find the
    index of a given element in that printed array.  The default is off.
 
 - `set print array-indexes off`
+
    Stop printing element indexes when displaying arrays.
 
 - `show print array-indexes`
+
    Show whether the index of each element is printed when displaying
    arrays.
 
-- `set print elements number-of-elements`
+- `set print elements number-of-elements`  
 - `set print elements unlimited`
+
    Set a limit on how many elements of an array GDB will print.
+
    If GDB is printing a large array, it stops printing after it has
    printed the number of elements set by the `set print elements` command.
    This limit also applies to the display of strings.
@@ -1073,36 +1159,46 @@ These settings are useful for debugging programs in any language:
    that the number of elements to print is unlimited.
 
 - `show print elements`
+
    Display the number of elements of a large array that GDB will print.
+
    If the number is 0, then the printing is unlimited.
 
 - `set print frame-arguments value`
+
    This command allows to control how the values of arguments are printed
-   when the debugger prints a frame (see [Frames](Frames.html#Frames)).  The possible
-   values are:
+   when the debugger prints a frame (see [Frames](Frames.html#Frames)).
 
-- `all`
-   The values of all arguments are printed.
+   The possible values are:
 
-- `scalars`
-   Print the value of an argument only if it is a scalar.  The value of more
-   complex arguments such as arrays, structures, unions, etc, is replaced
-   by `&hellip;`.  This is the default.  Here is an example where
-   only scalar arguments are shown:
-
-   ```
-   #1  0x08048361 in call_me (i=3, s=&hellip;, ss=0xbf8d508c, u=&hellip;, e=green)
-   at frame-args.c:23
-   ```
-
-- `none`
-   None of the argument values are printed.  Instead, the value of each argument
-   is replaced by `&hellip;`.  In this case, the example above now becomes:
-
-   ```
-   #1  0x08048361 in call_me (i=&hellip;, s=&hellip;, ss=&hellip;, u=&hellip;, e=&hellip;)
-   at frame-args.c:23
-   ```
+   - `all`
+   
+      The values of all arguments are printed.
+   
+   - `scalars`
+   
+      Print the value of an argument only if it is a scalar.  
+   
+      The value of more complex arguments such as arrays, structures, unions, etc, is replaced
+      by `&hellip;`.  This is the default.  Here is an example where
+      only scalar arguments are shown:
+   
+      ```
+      #1  0x08048361 in call_me (i=3, s=&hellip;, ss=0xbf8d508c, u=&hellip;, e=green)
+      at frame-args.c:23
+      ```
+   
+   - `none`
+   
+      None of the argument values are printed.  
+      
+      Instead, the value of each argument
+      is replaced by `&hellip;`.  In this case, the example above now becomes:
+   
+      ```
+      #1  0x08048361 in call_me (i=&hellip;, s=&hellip;, ss=&hellip;, u=&hellip;, e=&hellip;)
+      at frame-args.c:23
+      ```
 
    By default, only scalar arguments are printed.  This command can be used
    to configure the debugger to print the value of all arguments, regardless
@@ -1114,25 +1210,32 @@ These settings are useful for debugging programs in any language:
    especially in large applications.  Setting `print frame-arguments`
    `scalars` (the default) or `none` avoids this computation,
    thus speeding up the display of each Ada frame.
-   
+
 - `show print frame-arguments`
+
    Show how the value of arguments should be displayed when printing a frame.
 
 - `set print raw frame-arguments on`
+
    Print frame arguments in raw, non pretty-printed, form.
 
 - `set print raw frame-arguments off`
+
    Print frame arguments in pretty-printed form, if there is a pretty-printer
    for the value (see [Pretty Printing](Pretty-Printing.html#Pretty-Printing)),
    otherwise print the value in raw form.
+
    This is the default.
 
 - `show print raw frame-arguments`
+
    Show whether to print frame arguments in raw form.
 
-`set print entry-values value`
-   Set printing of frame argument values at function entry.  In some cases
-   GDB can determine the value of function argument which was passed by
+- `set print entry-values value`
+
+   Set printing of frame argument values at function entry.
+
+   In some cases GDB can determine the value of function argument which was passed by
    the function caller, even if the value was modified inside the called function
    and therefore is different.  With optimized code, the current value could be
    unavailable, but the entry value may still be known.
@@ -1150,6 +1253,7 @@ These settings are useful for debugging programs in any language:
    The value parameter can be one of the following:
 
 - `no`
+
    Print only actual parameter values, never print values from function entry
    point.
 
@@ -1162,8 +1266,10 @@ These settings are useful for debugging programs in any language:
    ```
 
 - `only`
-   Print only parameter values from function entry point.  The actual parameter
-   values are never printed.
+
+   Print only parameter values from function entry point.
+
+   The actual parameter values are never printed.
 
    ```
    #0  equal (val@entry=5)
@@ -1174,9 +1280,11 @@ These settings are useful for debugging programs in any language:
    ```
 
 - `preferred`
-   Print only parameter values from function entry point.  If value from function
-   entry point is not known while the actual value is known, print the actual
-   value for such parameter.
+
+   Print only parameter values from function entry point.
+
+   If value from function entry point is not known while the actual value 
+   is known, print the actual value for such parameter.
 
    ```
    #0  equal (val@entry=5)
@@ -1187,9 +1295,11 @@ These settings are useful for debugging programs in any language:
    ```
 
 - `if-needed`
-   Print actual parameter values.  If actual parameter value is not known while
-   value from function entry point is known, print the entry point value for such
-   parameter.
+
+   Print actual parameter values.
+
+   If actual parameter value is not known while value from function 
+   entry point is known, print the entry point value for such parameter.
 
    ```
    #0  equal (val=5)
@@ -1200,6 +1310,7 @@ These settings are useful for debugging programs in any language:
    ```
 
 - `both`
+
    Always print both the actual parameter value and its value from function entry
    point, even if values of one or both are not available due to compiler
    optimizations.
@@ -1213,9 +1324,12 @@ These settings are useful for debugging programs in any language:
    ```
 
 - `compact`
+
    Print the actual parameter value if it is known and also its value from
-   function entry point if it is known.  If neither is known, print for the actual
-   value `<optimized out>`.  If not in MI mode (see [GDB/MI](GDB_002fMI.html#GDB_002fMI)) and if both
+   function entry point if it is known.
+
+   If neither is known, print for the actual value `<optimized out>`.
+   If not in MI mode (see [GDB/MI](GDB_002fMI.html#GDB_002fMI)) and if both
    values are known and identical, print the shortened
    `param=param@entry=VALUE` notation.
 
@@ -1228,11 +1342,14 @@ These settings are useful for debugging programs in any language:
    ```
 
 - `default`
-   Always print the actual parameter value.  Print also its value from function
-   entry point, but only if it is known.  If not in MI mode (see [GDB/MI](GDB_002fMI.html#GDB_002fMI)) and
+
+   Always print the actual parameter value.
+
+   Print also its value from function entry point, but only if it is known.
+   If not in MI mode (see [GDB/MI](GDB_002fMI.html#GDB_002fMI)) and
    if both values are known and identical, print the shortened
    `param=param@entry=VALUE` notation.
-   
+
    ```
    #0  equal (val=val@entry=5)
    #0  different (val=6, val@entry=5)
@@ -1245,20 +1362,26 @@ These settings are useful for debugging programs in any language:
    entry resolution see [set debug entry-values](Tail-Call-Frames.html#set-debug-entry_002dvalues).
 
 - `show print entry-values`
+
    Show the method being used for printing of frame argument values at function
    entry.
 
-- `set print repeats number-of-repeats``set print repeats unlimited`
-   Set the threshold for suppressing display of repeated array
-   elements.  When the number of consecutive identical elements of an
+- `set print repeats number-of-repeats`  
+  `set print repeats unlimited`
+
+   Set the threshold for suppressing display of repeated array elements.
+
+   When the number of consecutive identical elements of an
    array exceeds the threshold, GDB prints the string
    `"<repeats n times>"`, where n is the number of
    identical repetitions, instead of displaying the identical elements
    themselves.  Setting the threshold to `unlimited` or zero will
-   cause all elements to be individually printed.  The default threshold
-   is 10.
+   cause all elements to be individually printed.
+
+   The default threshold is 10.
 
 - `show print repeats`
+
    Display the current threshold for printing repeated identical
    elements.
 
