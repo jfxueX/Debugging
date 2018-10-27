@@ -851,10 +851,10 @@ This module provides a method for prompt value-substitution.
       in the string length. Example: “\\\[\\e\[0;34m\\\](gdb)\\\[\\e\[0m\\\]” will 
       return a blue-colored “(gdb)” prompt where the length is five.
    
-   `\]`  
+   - `\]`  
       End a sequence of non-printing characters.
    
-      For example:
+   *For example:*
    
    ```gdb
    substitute_prompt (``frame: \f,
@@ -1205,9 +1205,9 @@ a file or inlined in `.debug_gdb_scripts`.
 
 The following entries are supported:
 
-`SECTION_SCRIPT_ID_PYTHON_FILE = 1`
-`SECTION_SCRIPT_ID_SCHEME_FILE = 3`
-`SECTION_SCRIPT_ID_PYTHON_TEXT = 4`
+`SECTION_SCRIPT_ID_PYTHON_FILE = 1`  
+`SECTION_SCRIPT_ID_SCHEME_FILE = 3`  
+`SECTION_SCRIPT_ID_PYTHON_TEXT = 4`  
 `SECTION_SCRIPT_ID_SCHEME_TEXT = 6`
 
 #### 23.4.2.1 Script File Entries
