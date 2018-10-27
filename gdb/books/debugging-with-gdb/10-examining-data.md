@@ -49,8 +49,9 @@ It may also print the expression using a Python-based pretty-printer (see [Prett
 - `print expr`  
   `print /fexpr`
 
-   expr is an expression (in the source language).  By default the
-   value of expr is printed in a format appropriate to its data type;
+   expr is an expression (in the source language).
+
+   By default the value of expr is printed in a format appropriate to its data type;
    you can choose a different format by specifying &lsquo;/f&rsquo;, where
    f is a letter specifying the format; see [Output Formats](Output-Formats.html#Output-Formats).
 
@@ -58,7 +59,9 @@ It may also print the expression using a Python-based pretty-printer (see [Prett
   `print /f`
 
    If you omit expr, GDB displays the last value again (from the
-   *value history*; see [Value History](Value-History.html#Value-History)).  This allows you to
+   *value history*; see [Value History](Value-History.html#Value-History)).
+
+   This allows you to
    conveniently inspect the same value in an alternative format.
 
    A more low-level way of examining data is with the `x` command.
@@ -185,19 +188,25 @@ a way to explicitly specify that value exploration of the argument is
 being invoked, while the latter is a way to explicitly specify that type
 exploration of the argument is being invoked.
 
-- `explore value expr`  
+- `explore value expr`
+
    This sub-command of `explore` explores the value of the
    expression expr (if expr is an expression valid in the
-   current context of the program being debugged).  The behavior of this
+   current context of the program being debugged).
+
+   The behavior of this
    command is identical to that of the behavior of the `explore`
    command being passed the argument expr.
 
-- `explore type arg`  
+- `explore type arg`
+
    This sub-command of `explore` explores the type of arg (if
    arg is a type visible in the current context of program being
    debugged), or the type of the value/expression arg (if arg
    is an expression valid in the current context of the program being
-   debugged).  If arg is a type, then the behavior of this command is
+   debugged).
+
+   If arg is a type, then the behavior of this command is
    identical to that of the `explore` command being passed the
    argument arg.  If arg is an expression, then the behavior of
    this command will be identical to that of the `explore` command
@@ -215,7 +224,7 @@ you compiled your program to include this information; see
 [Compilation](Compilation.html#Compilation).
 
 GDB supports array constants in expressions input by
-the user.  The syntax is {element, element&hellip;}.  For example,
+the user.  The syntax is {element, element…}.  For example,
 you can use the command `print {1, 2, 3}` to create an array
 of three integers.  If you pass an array to a function or assign it
 to a program variable, GDB copies the array to memory that
@@ -271,36 +280,39 @@ as well.
 
 When an ambiguity that needs to be resolved is detected, the debugger
 has the capability to display a menu of numbered choices for each
-possibility, and then waits for the selection with the prompt &lsquo;>&rsquo;.
-The first option is always &lsquo;[0] cancel&rsquo;, and typing 0 RET
+possibility, and then waits for the selection with the prompt `>`.
+The first option is always `[0] cancel`, and typing 0 RET
 aborts the current command.  If the command in which the expression was
 used allows more than one choice to be selected, the next option in the
-menu is &lsquo;[1] all&rsquo;, and typing 1 RET selects all possible
+menu is `[1] all`, and typing 1 RET selects all possible
 choices.
 
 For example, the following session excerpt shows an attempt to set a
 breakpoint at the overloaded symbol `String::after`.
 We choose three particular definitions of that function name:
 
-    (gdb) b String::after
-    [0] cancel
-    [1] all
-    [2] file:String.cc; line number:867
-    [3] file:String.cc; line number:860
-    [4] file:String.cc; line number:875
-    [5] file:String.cc; line number:853
-    [6] file:String.cc; line number:846
-    [7] file:String.cc; line number:735
-    > 2 4 6
-    Breakpoint 1 at 0xb26c: file String.cc, line 867.
-    Breakpoint 2 at 0xb344: file String.cc, line 875.
-    Breakpoint 3 at 0xafcc: file String.cc, line 846.
-    Multiple breakpoints were set.
-    Use the "delete" command to delete unwanted
-     breakpoints.
-    (gdb)
+```gdb
+(gdb) b String::after
+[0] cancel
+[1] all
+[2] file:String.cc; line number:867
+[3] file:String.cc; line number:860
+[4] file:String.cc; line number:875
+[5] file:String.cc; line number:853
+[6] file:String.cc; line number:846
+[7] file:String.cc; line number:735
+> 2 4 6
+Breakpoint 1 at 0xb26c: file String.cc, line 867.
+Breakpoint 2 at 0xb344: file String.cc, line 875.
+Breakpoint 3 at 0xafcc: file String.cc, line 846.
+Multiple breakpoints were set.
+Use the "delete" command to delete unwanted
+ breakpoints.
+(gdb)
+```
 
-- `set multiple-symbols mode`  
+- `set multiple-symbols mode`
+
    This option allows you to adjust the debugger behavior when an expression
    is ambiguous.
 
@@ -319,7 +331,8 @@ We choose three particular definitions of that function name:
    Finally, when mode is set to `cancel`, the debugger reports
    an error due to the ambiguity and the command is aborted.
 
-- `show multiple-symbols`  
+- `show multiple-symbols`
+
    Show the current value of the `multiple-symbols` setting.
 
 
@@ -427,12 +440,12 @@ include file named includefile that defines a variable,
 `some_global`.
 
 ```gdb
-    (gdb) p includefile
-    $1 = 23
-    (gdb) p includefile::some_global
-    A syntax error in expression, near `'.
-    (gdb) p 'includefile'::some_global
-    $2 = 27
+(gdb) p includefile
+$1 = 23
+(gdb) p includefile::some_global
+A syntax error in expression, near `'.
+(gdb) p 'includefile'::some_global
+$2 = 27
 ```
 
 > *Warning:* Occasionally, a local variable may appear to have the
@@ -471,8 +484,7 @@ info formats that are best suited to C++ programs.
 
 If you ask to print an object whose contents are unknown to
 GDB, e.g., because its data type is not completely specified
-by the debug information, GDB will say `<incomplete
-type>`.  See [incomplete type](Symbols.html#Symbols), for more about this.
+by the debug information, GDB will say `<incomplete type>`.  See [incomplete type](Symbols.html#Symbols), for more about this.
 
 If you try to examine or use the value of a (global) variable for
 which GDB has no type information, e.g., because the program
@@ -594,7 +606,7 @@ in each structure.  Here is an example of what you might type:
 set $i = 0
 p dtab[$i++]->fv
 RETRET
-&hellip;
+…
 ```
 
 
@@ -921,8 +933,8 @@ or `s` format, or a unit size; otherwise it uses `print`.
    instruction about to be executed each time execution stops (`$pc`
    is a common name for the program counter; see [Registers](Registers.html#Registers)).
 
-- `undisplay dnums&hellip;`  
-- `delete display dnums&hellip;`
+- `undisplay dnums…`  
+  `delete display dnums…`
 
    Remove items from the list of expressions to display.
 
@@ -932,9 +944,9 @@ or `s` format, or a unit size; otherwise it uses `print`.
    or it could be a range of display numbers, as in `2-4`.
 
    `undisplay` does not repeat if you press RET after using it.
-   (Otherwise you would just get the error `No display number &hellip;`.)
+   (Otherwise you would just get the error `No display number …`.)
 
-- `disable display dnums&hellip;`
+- `disable display dnums…`
 
    Disable the display of item numbers `dnums`.
 
@@ -945,7 +957,7 @@ or `s` format, or a unit size; otherwise it uses `print`.
    the `info display` display; or it could be a range of display
    numbers, as in `2-4`.
 
-- `enable display dnums&hellip;`
+- `enable display dnums…`
 
    Enable display of item numbers `dnums`.
 
@@ -989,7 +1001,7 @@ and symbols are printed.
 These settings are useful for debugging programs in any language:
 
 - `set print address`   
-- `set print address on`
+  `set print address on`
 
    GDB prints memory addresses showing the location of stack
    traces, structure values, pointer values, breakpoints, and so forth,
@@ -999,12 +1011,12 @@ These settings are useful for debugging programs in any language:
    For example, this is what a stack frame display looks like with
    `set print address on`:
 
-   ```    
+   ```gdb
    (gdb) f
    #0  set_quotes (lq=0x34c78 "<<", rq=0x34c88 ">>")
    at input.c:530
    530         if (lquote != def_lquote)
-   ```    
+   ```
 
 - `set print address off`
 
@@ -1013,19 +1025,19 @@ These settings are useful for debugging programs in any language:
    For example,
    this is the same stack frame displayed with `set print address off`:
 
-   ```    
+   ```gdb
    (gdb) set print addr off
    (gdb) f
    #0  set_quotes (lq="<<", rq=">>") at input.c:530
    530         if (lquote != def_lquote)
-   ```    
+   ```
 
    You can use `set print address off` to eliminate all machine
    dependent displays from the GDB interface.  For example, with
    `print address off`, you should get the same text for backtraces on
    all machines&mdash;whether or not they involve pointer arguments.
 
-`show print address`
+- `show print address`
 
    Show whether or not addresses are to be printed.
 
@@ -1037,17 +1049,17 @@ These settings are useful for debugging programs in any language:
    you can set GDB to print the source file and line number when
    it prints a symbolic address:
 
-`set print symbol-filename on`
+- `set print symbol-filename on`
 
    Tell GDB to print the source file name and line number of a
    symbol in the symbolic form of an address.
 
-`set print symbol-filename off`
+- `set print symbol-filename off`
 
    Do not print source file name and line number of a symbol.  This is the
    default.
 
-`show print symbol-filename`
+- `show print symbol-filename`
 
    Show whether or not GDB will print the source file name and
    line number of a symbol in the symbolic form of an address.
@@ -1060,7 +1072,7 @@ These settings are useful for debugging programs in any language:
    printed is reasonably close to the closest earlier symbol:
 
 - `set print max-symbolic-offset max-offset`   
-- `set print max-symbolic-offset unlimited`
+  `set print max-symbolic-offset unlimited`
 
    Tell GDB to only display the symbolic form of an address if the
    offset between the closest earlier symbol and the address is less than
@@ -1082,11 +1094,11 @@ These settings are useful for debugging programs in any language:
    For example, here GDB shows that a variable `ptt` points
    at another variable `t`, defined in hi2.c:
 
-   ```    
+   ```gdb
    (gdb) set print symbol-filename on
     (gdb) p/a ptt
    $4 = 0xe008 <t in hi2.c>
-   ```    
+   ```
 
    > *Warning:* For pointers that point to a local variable, `p/a`
    > does not show the symbol name and filename of the referent, even with
@@ -1114,7 +1126,7 @@ These settings are useful for debugging programs in any language:
    Other settings control how different kinds of objects are printed:
 
 - `set print array`  
-- `set print array on`
+  `set print array on`
 
    Pretty print arrays.
 
@@ -1130,7 +1142,7 @@ These settings are useful for debugging programs in any language:
    arrays.
 
 - `set print array-indexes`  
-- `set print array-indexes on`
+  `set print array-indexes on`
 
    Print the index of each element when displaying arrays.
 
@@ -1147,7 +1159,7 @@ These settings are useful for debugging programs in any language:
    arrays.
 
 - `set print elements number-of-elements`  
-- `set print elements unlimited`
+  `set print elements unlimited`
 
    Set a limit on how many elements of an array GDB will print.
 
@@ -1180,11 +1192,11 @@ These settings are useful for debugging programs in any language:
       Print the value of an argument only if it is a scalar.  
    
       The value of more complex arguments such as arrays, structures, unions, etc, is replaced
-      by `&hellip;`.  This is the default.  Here is an example where
+      by `…`.  This is the default.  Here is an example where
       only scalar arguments are shown:
    
-      ```
-      #1  0x08048361 in call_me (i=3, s=&hellip;, ss=0xbf8d508c, u=&hellip;, e=green)
+      ```gdb
+      #1  0x08048361 in call_me (i=3, s=…, ss=0xbf8d508c, u=…, e=green)
       at frame-args.c:23
       ```
    
@@ -1193,10 +1205,10 @@ These settings are useful for debugging programs in any language:
       None of the argument values are printed.  
       
       Instead, the value of each argument
-      is replaced by `&hellip;`.  In this case, the example above now becomes:
+      is replaced by `…`.  In this case, the example above now becomes:
    
-      ```
-      #1  0x08048361 in call_me (i=&hellip;, s=&hellip;, ss=&hellip;, u=&hellip;, e=&hellip;)
+      ```gdb
+      #1  0x08048361 in call_me (i=…, s=…, ss=…, u=…, e=…)
       at frame-args.c:23
       ```
 
@@ -1257,7 +1269,7 @@ These settings are useful for debugging programs in any language:
    Print only actual parameter values, never print values from function entry
    point.
 
-   ```
+   ```gdb
    #0  equal (val=5)
    #0  different (val=6)
    #0  lost (val=<optimized out>)
@@ -1271,7 +1283,7 @@ These settings are useful for debugging programs in any language:
 
    The actual parameter values are never printed.
 
-   ```
+   ```gdb
    #0  equal (val@entry=5)
    #0  different (val@entry=5)
    #0  lost (val@entry=5)
@@ -1286,7 +1298,7 @@ These settings are useful for debugging programs in any language:
    If value from function entry point is not known while the actual value 
    is known, print the actual value for such parameter.
 
-   ```
+   ```gdb
    #0  equal (val@entry=5)
    #0  different (val@entry=5)
    #0  lost (val@entry=5)
@@ -1301,7 +1313,7 @@ These settings are useful for debugging programs in any language:
    If actual parameter value is not known while value from function 
    entry point is known, print the entry point value for such parameter.
 
-   ```
+   ```gdb
    #0  equal (val=5)
    #0  different (val=6)
    #0  lost (val@entry=5)
@@ -1315,7 +1327,7 @@ These settings are useful for debugging programs in any language:
    point, even if values of one or both are not available due to compiler
    optimizations.
 
-   ```
+   ```gdb
    #0  equal (val=5, val@entry=5)
    #0  different (val=6, val@entry=5)
    #0  lost (val=<optimized out>, val@entry=5)
@@ -1333,7 +1345,7 @@ These settings are useful for debugging programs in any language:
    values are known and identical, print the shortened
    `param=param@entry=VALUE` notation.
 
-   ```
+   ```gdb
    #0  equal (val=val@entry=5)
    #0  different (val=6, val@entry=5)
    #0  lost (val@entry=5)
@@ -1350,7 +1362,7 @@ These settings are useful for debugging programs in any language:
    if both values are known and identical, print the shortened
    `param=param@entry=VALUE` notation.
 
-   ```
+   ```gdb
    #0  equal (val=val@entry=5)
    #0  different (val=6, val@entry=5)
    #0  lost (val=<optimized out>, val@entry=5)
@@ -1387,19 +1399,22 @@ These settings are useful for debugging programs in any language:
 
 - `set print null-stop`
    Cause GDB to stop printing the characters of an array when the first
-   NULL is encountered.  This is useful when large arrays actually
-   contain only short strings.
+   NULL is encountered.
+
+   This is useful when large arrays actually contain only short strings.
+
    The default is off.
 
 - `show print null-stop`
-   Show whether GDB stops printing an array on the first
-   NULL character.
+
+   Show whether GDB stops printing an array on the first NULL character.
 
 - `set print pretty on`
+
    Cause GDB to print structures in an indented format with one member
    per line, like this:
 
-   ```
+   ```gdb
    $1 = {
      next = 0x0,
      flags = {
@@ -1411,9 +1426,10 @@ These settings are useful for debugging programs in any language:
    ```
 
 - `set print pretty off`
+
    Cause GDB to print structures in a compact format, like this:
 
-   ```
+   ```gdb
    $1 = {next = 0x0, flags = {sweet = 1, sour = 1}, \
    meat = 0x54 "Pork"}
    ```
@@ -1421,32 +1437,41 @@ These settings are useful for debugging programs in any language:
    This is the default format.
 
 - `show print pretty`
+
    Show which format GDB is using to print structures.
 
 - `set print sevenbit-strings on`
-   Print using only seven-bit characters; if this option is set,
-   GDB displays any eight-bit characters (in strings or
+
+   Print using only seven-bit characters; 
+
+   if this option is set, GDB displays any eight-bit characters (in strings or
    character values) using the notation `\nnn`.  This setting is
    best if you are working in English (ASCII) and you use the
    high-order bit of characters as a marker or `meta` bit.
 
 - `set print sevenbit-strings off`
-   Print full eight-bit characters.  This allows the use of more
-   international character sets, and is the default.
+
+   Print full eight-bit characters.
+
+   This allows the use of more international character sets, and is the default.
 
 - `show print sevenbit-strings`
+
    Show whether or not GDB is printing only seven-bit characters.
 
 - `set print union on`
+
    Tell GDB to print unions which are contained in structures
    and other unions.  This is the default setting.
 
 - `set print union off`
+
    Tell GDB not to print unions which are contained in
    structures and other unions.  GDB will print `"{...}"`
    instead.
 
 - `show print union`
+
    Ask GDB whether or not it will print unions which are contained in
    structures and other unions.
 
@@ -1470,13 +1495,13 @@ These settings are useful for debugging programs in any language:
 
    with `set print union on` in effect `p foo` would print
 
-   ```
+   ```gdb
    $1 = {it = Tree, form = {tree = Acorn, bug = Cocoon}}
    ```
 
    and with `set print union off` in effect it would print
 
-   ```
+   ```gdb
    $1 = {it = Tree, form = {...}}
    ```
 
@@ -1485,44 +1510,56 @@ These settings are useful for debugging programs in any language:
 
    These settings are of interest when debugging C++ programs:
 
-- `set print demangle`
-- `set print demangle on`
+- `set print demangle`  
+  `set print demangle on`
+
    Print C++ names in their source form rather than in the encoded
    (`mangled`) form passed to the assembler and linker for type-safe
    linkage.  The default is on.
 
 - `show print demangle`
+
    Show whether C++ names are printed in mangled or demangled form.
 
-- `set print asm-demangle`
+- `set print asm-demangle`  
   `set print asm-demangle on`
+
    Print C++ names in their source form rather than their mangled form, even
    in assembler code printouts such as instruction disassemblies.
+
    The default is off.
 
 - `show print asm-demangle`
+
    Show whether C++ names in assembly listings are printed in mangled
    or demangled form.
 
 - `set demangle-style style`
+
    Choose among several encoding schemes used by different compilers to
    represent C++ names.  The choices for style are currently:
 
 - `auto`
+
    Allow GDB to choose a decoding style by inspecting your program.
    This is the default.
 
 - `gnu`
+
    Decode based on the GNU C++ compiler (`g++`) encoding algorithm.
 
 - `hp`
+
    Decode based on the HP ANSI C++ (`aCC`) encoding algorithm.
 
 - `lucid`
+
    Decode based on the Lucid C++ compiler (`lcc`) encoding algorithm.
 
 - `arm`
+
    Decode using the algorithm in the C++ Annotated Reference Manual.
+
    **Warning:** this setting alone is not sufficient to allow
    debugging `cfront`-generated executables.  GDB would
    require further enhancement to permit that.
@@ -1530,51 +1567,76 @@ These settings are useful for debugging programs in any language:
    If you omit style, you will see a list of possible formats.
 
 - `show demangle-style`
+
    Display the encoding style currently in use for decoding C++ symbols.
 
-- `set print object``set print object on`
+- `set print object`  
+  `set print object on`
+
    When displaying a pointer to an object, identify the *actual*
    (derived) type of the object rather than the *declared* type, using
-   the virtual function table.  Note that the virtual function table is
+   the virtual function table.
+
+   Note that the virtual function table is
    required&mdash;this feature can only work for objects that have run-time
    type identification; a single virtual method in the object's declared
    type is sufficient.  Note that this setting is also taken into account when
    working with variable objects via MI (see [GDB/MI](GDB_002fMI.html#GDB_002fMI)).
 
 - `set print object off`
+
    Display only the declared type of objects, without reference to the
    virtual function table.  This is the default setting.
 
 - `show print object`
+
    Show whether actual, or declared, object types are displayed.
 
-- `set print static-members``set print static-members on`
-   Print static members when displaying a C++ object.  The default is on.
+- `set print static-members`  
+  `set print static-members on`
+
+   Print static members when displaying a C++ object.
+
+   The default is on.
 
 - `set print static-members off`
+
    Do not print static members when displaying a C++ object.
 
 - `show print static-members`
+
    Show whether C++ static members are printed or not.
 
-- `set print pascal_static-members``set print pascal_static-members on`
-   Print static members when displaying a Pascal object.  The default is on.
+- `set print pascal_static-members`
+  `set print pascal_static-members on`
+
+   Print static members when displaying a Pascal object.
+
+   The default is on.
 
 - `set print pascal_static-members off`
+
    Do not print static members when displaying a Pascal object.
 
 - `show print pascal_static-members`
+
    Show whether Pascal static members are printed or not.
 
-- `set print vtbl``set print vtbl on`
-   Pretty print C++ virtual function tables.  The default is off.
+- `set print vtbl`  
+  `set print vtbl on`
+
+   Pretty print C++ virtual function tables.
+
+   The default is off.
    (The `vtbl` commands do not work on programs compiled with the HP
    ANSI C++ compiler (`aCC`).)
 
 - `set print vtbl off`
+
    Do not pretty print C++ virtual function tables.
 
 - `show print vtbl`
+
    Show whether C++ virtual function tables are pretty printed, or not.
 
 
@@ -1592,12 +1654,12 @@ registered for the value.  If there is then GDB invokes the
 pretty-printer to print the value.  Otherwise the value is printed normally.
 
 Pretty-printers are normally named.  This makes them easy to manage.
-The &lsquo;info pretty-printer&rsquo; command will list all the installed
+The `info pretty-printer` command will list all the installed
 pretty-printers with their names.
 If a pretty-printer can handle multiple data types, then its
 *subprinters* are the printers for the individual data types.
 Each such subprinter has its own name.
-The format of the name is printer-name;subprinter-name.
+The format of the name is `printer-name;subprinter-name`.
 
 Pretty-printers are installed by *registering* them with GDB.
 Typically they are automatically loaded and registered when the corresponding
@@ -1611,65 +1673,76 @@ There are three places where a pretty-printer can be registered.
 
 -  Pretty-printers registered with a program space are available only
    when debugging that program.
-   See [Progspaces In Python](Progspaces-In-Python.html#Progspaces-In-Python), for more details on program spaces in Python.
+   See [Progspaces In Python](Progspaces-In-Python.html#Progspaces-In-Python),
+   for more details on program spaces in Python.
 
 -  Pretty-printers registered with an objfile are loaded and unloaded
    with the corresponding objfile (e.g., shared library).
-   See [Objfiles In Python](Objfiles-In-Python.html#Objfiles-In-Python), for more details on objfiles in Python.
+   See [Objfiles In Python](Objfiles-In-Python.html#Objfiles-In-Python), 
+   for more details on objfiles in Python.
 
-See [Selecting Pretty-Printers](Selecting-Pretty_002dPrinters.html#Selecting-Pretty_002dPrinters), for further information on how 
-pretty-printers are selected,
+See [Selecting Pretty-Printers](Selecting-Pretty_002dPrinters.html#Selecting-Pretty_002dPrinters), 
+for further information on how pretty-printers are selected,
 
-See [Writing a Pretty-Printer](Writing-a-Pretty_002dPrinter.html#Writing-a-Pretty_002dPrinter), for implementing pretty printers
-for new types.
+See [Writing a Pretty-Printer](Writing-a-Pretty_002dPrinter.html#Writing-a-Pretty_002dPrinter), 
+for implementing pretty printers for new types.
 
 
 ### 10.9.2 Pretty-Printer Example
 
 Here is how a C++`std::string` looks without a pretty-printer:
 
-    (gdb) print s
-    $1 = {
-      static npos = 4294967295, 
-      _M_dataplus = {
-        <std::allocator<char>> = {
-          <__gnu_cxx::new_allocator<char>> = {
-            <No data fields>}, <No data fields>
-          },
-        members of std::basic_string<char, std::char_traits<char>,
-          std::allocator<char> >::_Alloc_hider:
-        _M_p = 0x804a014 "abcd"
-      }
-    }
+```gdb
+(gdb) print s
+$1 = {
+  static npos = 4294967295, 
+  _M_dataplus = {
+    <std::allocator<char>> = {
+      <__gnu_cxx::new_allocator<char>> = {
+        <No data fields>}, <No data fields>
+      },
+    members of std::basic_string<char, std::char_traits<char>,
+      std::allocator<char> >::_Alloc_hider:
+    _M_p = 0x804a014 "abcd"
+  }
+}
+```
 
 With a pretty-printer for `std::string` only the contents are printed:
 
-    (gdb) print s
-    $2 = "abcd"
+```gdb
+(gdb) print s
+$2 = "abcd"
+```
 
 
 ### 10.9.3 Pretty-Printer Commands
 
 - `info pretty-printer [object-regexp [name-regexp]]`
+
    Print the list of installed pretty-printers.
+
    This includes disabled pretty-printers, which are marked as such.
 
-   object-regexp is a regular expression matching the objects
+   `object-regexp` is a regular expression matching the objects
    whose pretty-printers to list.
-   Objects can be `global`, the program space&rsquo;s file
+   Objects can be `global`, the program space's file
    (see [Progspaces In Python](Progspaces-In-Python.html#Progspaces-In-Python)),
    and the object files within that program space (see [Objfiles In Python](Objfiles-In-Python.html#Objfiles-In-Python)).
    See [Selecting Pretty-Printers](Selecting-Pretty_002dPrinters.html#Selecting-Pretty_002dPrinters), for details on how GDB
    looks up a printer from these three objects.
 
-   name-regexp is a regular expression matching the name of the printers
+   `name-regexp` is a regular expression matching the name of the printers
    to list.
 
 - `disable pretty-printer [object-regexp [name-regexp]]`
+
    Disable pretty-printers matching object-regexp and name-regexp.
+
    A disabled pretty-printer is not forgotten, it may be enabled again later.
 
 - `enable pretty-printer [object-regexp [name-regexp]]`
+
    Enable pretty-printers matching object-regexp and name-regexp.
 
 **Example:**
@@ -1679,48 +1752,50 @@ named `foo` that prints objects of type `foo`, and
 another from library2.so named `bar` that prints two types of objects,
 `bar1` and `bar2`.
 
-    (gdb) info pretty-printer
-    library1.so:
-      foo
-    library2.so:
-      bar
-        bar1
-        bar2
-    (gdb) info pretty-printer library2
-    library2.so:
-      bar
-        bar1
-        bar2
-    (gdb) disable pretty-printer library1
-    1 printer disabled
-    2 of 3 printers enabled
-    (gdb) info pretty-printer
-    library1.so:
-      foo [disabled]
-    library2.so:
-      bar
-        bar1
-        bar2
-    (gdb) disable pretty-printer library2 bar:bar1
-    1 printer disabled
-    1 of 3 printers enabled
-    (gdb) info pretty-printer library2
-    library1.so:
-      foo [disabled]
-    library2.so:
-      bar
-        bar1 [disabled]
-        bar2
-    (gdb) disable pretty-printer library2 bar
-    1 printer disabled
-    0 of 3 printers enabled
-    (gdb) info pretty-printer library2
-    library1.so:
-      foo [disabled]
-    library2.so:
-      bar [disabled]
-        bar1 [disabled]
-        bar2
+```gdb
+(gdb) info pretty-printer
+library1.so:
+  foo
+library2.so:
+  bar
+    bar1
+    bar2
+(gdb) info pretty-printer library2
+library2.so:
+  bar
+    bar1
+    bar2
+(gdb) disable pretty-printer library1
+1 printer disabled
+2 of 3 printers enabled
+(gdb) info pretty-printer
+library1.so:
+  foo [disabled]
+library2.so:
+  bar
+    bar1
+    bar2
+(gdb) disable pretty-printer library2 bar:bar1
+1 printer disabled
+1 of 3 printers enabled
+(gdb) info pretty-printer library2
+library1.so:
+  foo [disabled]
+library2.so:
+  bar
+    bar1 [disabled]
+    bar2
+(gdb) disable pretty-printer library2 bar
+1 printer disabled
+0 of 3 printers enabled
+(gdb) info pretty-printer library2
+library1.so:
+  foo [disabled]
+library2.so:
+  bar [disabled]
+    bar1 [disabled]
+    bar2
+```
 
 Note that for `bar` the entire printer can be disabled,
 as can each individual subprinter.
@@ -1739,7 +1814,7 @@ symbol table.
 The values printed are given *history numbers* by which you can
 refer to them.  These are successive integers starting with one.
 `print` shows you the history number assigned to a value by
-printing `$num = ` before the value; here num is the
+printing `$num = ` before the value; here `num` is the
 history number.
 
 To refer to any previous value, use `$` followed by the value's
@@ -1753,12 +1828,16 @@ is the value just prior to `$$`, `$$1` is equivalent to
 For example, suppose you have just printed a pointer to a structure and
 want to see the contents of the structure.  It suffices to type
 
-    p *$
+```gdb
+p *$    
+```
 
 If you have a chain of structures where the component `next` points
 to the next one, you can print the contents of the next one with this:
 
-    p *$.next
+```gdb
+p *$.next
+```
 
 You can print successive links in the chain by repeating this
 command&mdash;which you can do by just typing RET.
@@ -1766,23 +1845,29 @@ command&mdash;which you can do by just typing RET.
 Note that the history records values, not expressions.  If the value of
 `x` is 4 and you type these commands:
 
-    print x
-    set x=5
+```gdb
+print x
+set x=5
+```
 
 then the value recorded in the value history by the `print` command
 remains 4 even though the value of `x` has changed.
 
 - `show values`
+
    Print the last ten values in the value history, with their item numbers.
    This is like `p $$9` repeated ten times, except that `show values` 
    does not change the history.
 
 - `show values n`
+
    Print ten history values centered on history item number n.
 
 - `show values +`
-   Print ten history values just after the values last printed.  If no more
-   values are available, `show values +` produces no display.
+
+   Print ten history values just after the values last printed.
+
+   If no more values are available, `show values +` produces no display.
 
 Pressing RET to repeat `show values n` has exactly the
 same effect as `show values +`.
@@ -1806,7 +1891,9 @@ You can save a value in a convenience variable with an assignment
 expression, just as you would set a variable in your program.
 For example:
 
-    set $foo = *object_ptr
+```gdb
+set $foo = *object_ptr
+```
 
 would save in `$foo` the value contained in the object pointed to by
 `object_ptr`.
@@ -1821,12 +1908,16 @@ that variable already has a value of a different type.  The convenience
 variable, when used as an expression, has the type of its current value.
 
 - `show convenience`
+
    Print a list of convenience variables used so far, and their values,
    as well as a list of the convenience functions.
    Abbreviated `show conv`.
 
 `init-if-undefined $variable = expression`
-   Set a convenience variable if it has not already been set.  This is useful
+
+   Set a convenience variable if it has not already been set.
+
+   This is useful
    for user-defined commands that keep some state.  It is similar, in concept,
    to using local static variables with initializers in C (except that
    convenience variables are global).  It can also be used to allow users to
@@ -1839,36 +1930,42 @@ variable, when used as an expression, has the type of its current value.
    incremented or a pointer to be advanced.  For example, to print
    a field from successive elements of an array of structures:
 
-   ```
+   ```gdb
    set $i = 0
    print bar[$i++]->contents
    ```
 
    Repeat that command by typing RET.
 
-   Some convenience variables are created automatically by GDB and given
-   values likely to be useful.
+Some convenience variables are created automatically by GDB and given
+values likely to be useful.
 
 - `$_`
+
    The variable `$_` is automatically set by the `x` command to
-   the last address examined (see [Examining Memory](Memory.html#Memory)).  Other
-   commands which provide a default address for `x` to examine also
+   the last address examined (see [Examining Memory](Memory.html#Memory)).
+
+   Other commands which provide a default address for `x` to examine also
    set `$_` to that address; these commands include `info line`
    and `info breakpoint`.  The type of `$_` is `void *`
    except when set by the `x` command, in which case it is a pointer
    to the type of `$__`.
 
 - `$__`
+
    The variable `$__` is automatically set by the `x` command
-   to the value found in the last address examined.  Its type is chosen
-   to match the format in which the data was printed.
+   to the value found in the last address examined.
+
+   Its type is chosen to match the format in which the data was printed.
 
 - `$_exitcode`
+
    When the program being debugged terminates normally, GDB
    automatically sets this variable to the exit code of the program, and
    resets `$_exitsignal` to `void`.
 
 - `$_exitsignal`
+
    When the program being debugged dies due to an uncaught signal,
    GDB automatically sets this variable to that signal's number,
    and resets `$_exitcode` to `void`.
@@ -1893,10 +1990,10 @@ variable, when used as an expression, has the type of its current value.
    A valid way of telling whether the program being debugged has exited
    or signalled would be:
 
-   ```
+   ```gdb
    (gdb) define has_exited_or_signalled
-   Type commands for definition of ``has_exited_or_signalled''.
-   End with a line saying just ``end''.
+   Type commands for definition of 'has_exited_or_signalled'.
+   End with a line saying just 'end'.
    >if $_isvoid ($_exitsignal)
    >echo The program has exited\n
    >else
@@ -1917,35 +2014,43 @@ variable, when used as an expression, has the type of its current value.
    `SIGALRM` signal.  If the program being debugged had not called
    `raise`, then GDB would report a normal exit:
 
-   ```
+   ```gdb
    (gdb) has_exited_or_signalled
    The program has exited
    ```
 
 - `$_exception`
+
    The variable `$_exception` is set to the exception object being
    thrown at an exception-related catchpoint.  See [Set Catchpoints](Set-Catchpoints.html#Set-Catchpoints).
 
-- `$_probe_argc``$_probe_arg0&hellip;$_probe_arg11`
+- `$_probe_argc`  
+  `$_probe_arg0…$_probe_arg11`
    Arguments to a static probe.  See [Static Probe Points](Static-Probe-Points.html#Static-Probe-Points).
 
 - `$_sdata`
+
    The variable `$_sdata` contains extra collected static tracepoint
-   data.  See [Tracepoint Action Lists](Tracepoint-Actions.html#Tracepoint-Actions).  Note that
-   `$_sdata` could be empty, if not inspecting a trace buffer, or
+   data.  See [Tracepoint Action Lists](Tracepoint-Actions.html#Tracepoint-Actions).
+
+   Note that `$_sdata` could be empty, if not inspecting a trace buffer, or
    if extra static tracepoint data has not been collected.
 
 - `$_siginfo`
+
    The variable `$_siginfo` contains extra signal information
-   (see [extra signal information](Signals.html#extra-signal-information)).  Note that `$_siginfo`
-   could be empty, if the application has not yet received any signals.
+   (see [extra signal information](Signals.html#extra-signal-information)).
+
+   Note that `$_siginfo` could be empty, if the application has not yet received any signals.
    For example, it will be empty before you execute the `run` command.
 
 - `$_tlb`
+
    The variable `$_tlb` is automatically set when debugging
    applications running on MS-Windows in native mode or connected to
    gdbserver that supports the `qGetTIBAddr` request. 
    See [General Query Packets](General-Query-Packets.html#General-Query-Packets).
+
    This variable contains the address of the thread information block.
 
 - `$_inferior`
@@ -1970,6 +2075,7 @@ These functions do not require GDB to be configured with
 `Python` support, which means that they are always available.
 
 - `$_isvoid (expr)`
+
    Return one if the expression expr is `void`.  Otherwise it
    returns zero.
 
@@ -1978,7 +2084,7 @@ These functions do not require GDB to be configured with
    (see [Convenience Variables](Convenience-Vars.html#Convenience-Vars)) to check whether
    it is `void`:
 
-   ```
+   ```gdb
    (gdb) print $_exitcode
    $1 = void
    (gdb) print $_isvoid ($_exitcode)
@@ -2012,7 +2118,7 @@ These functions do not require GDB to be configured with
 
    The result of calling it inside GDB is `void`:
 
-   ```
+   ```gdb
    (gdb) print foo ()
    $1 = void
    (gdb) print $_isvoid (foo ())
@@ -2027,25 +2133,31 @@ These functions do not require GDB to be configured with
    These functions require GDB to be configured with `Python` support.
 
 - `$_memeq(buf1, buf2, length)`
+
    Returns one if the length bytes at the addresses given by
    buf1 and buf2 are equal.
    Otherwise it returns zero.
 
 - `$_regex(str, regex)`
+
    Returns one if the string str matches the regular expression
    regex.  Otherwise it returns zero.
-   The syntax of the regular expression is that specified by `Python`&rsquo;s
+
+   The syntax of the regular expression is that specified by `Python`'s
    regular expression support.
 
 - `$_streq(str1, str2)`
+
    Returns one if the strings str1 and str2 are equal.
    Otherwise it returns zero.
 
 - `$_strlen(str)`
+
    Returns the length of string str.
 
 - `$_caller_is(name[, number_of_frames])`
-   Returns one if the calling function&rsquo;s name is equal to name.
+
+   Returns one if the calling function's name is equal to name.
    Otherwise it returns zero.
 
    If the optional argument `number_of_frames` is provided,
@@ -2054,7 +2166,7 @@ These functions do not require GDB to be configured with
 
    **Example:**
 
-   ```
+   ```gdb
    (gdb) backtrace
    #0  bottom_func ()
        at testsuite/gdb.python/py-caller-is.c:21
@@ -2071,6 +2183,7 @@ These functions do not require GDB to be configured with
    ```
 
 - `$_caller_matches(regexp[, number_of_frames])`
+
    Returns one if the calling function's name matches the regular expression
    regexp.  Otherwise it returns zero.
 
@@ -2079,6 +2192,7 @@ These functions do not require GDB to be configured with
    The default is 1.
 
 - `$_any_caller_is(name[, number_of_frames])`
+
    Returns one if any calling function's name is equal to name.
    Otherwise it returns zero.
 
@@ -2092,6 +2206,7 @@ These functions do not require GDB to be configured with
    frame specified by `number_of_frames`.
 
 - `$_any_caller_matches(regexp[, number_of_frames])`
+
    Returns one if any calling function's name matches the regular expression
    regexp.  Otherwise it returns zero.
 
@@ -2105,13 +2220,14 @@ These functions do not require GDB to be configured with
    frame specified by `number_of_frames`.
 
 - `$_as_string(value)`
+
    Return the string representation of value.
 
    This function is useful to obtain the textual label (enumerator) of an
    enumeration value.  For example, assuming the variable node is of
    an enumerated type:
 
-   ```
+   ```gdb
    (gdb) printf "Visiting node of type %s\n", $_as_string(node)
    Visiting node of type NODE_INTEGER
    ```
@@ -2119,6 +2235,7 @@ These functions do not require GDB to be configured with
    GDB provides the ability to list and get help on convenience functions.
 
 - `help function`
+
    Print a list of all convenience functions.
 
 
@@ -2133,17 +2250,21 @@ your machine.
    Print the names and values of all registers except floating-point
    and vector registers (in the selected stack frame).
 
-`info all-registers`
+- `info all-registers`
    Print the names and values of all registers, including floating-point
    and vector registers (in the selected stack frame).
 
-`info registers reggroup &hellip;`
+- `info registers reggroup …`
    Print the name and value of the registers in each of the specified
-   reggroups.  The reggoup can be any of those returned by
+   reggroups.
+
+   The reggoup can be any of those returned by
    `maint print reggroups` (see [Maintenance Commands](Maintenance-Commands.html#Maintenance-Commands)).
 
-`info registers regname &hellip;`
+- `info registers regname …`
+
    Print the *relativized* value of each specified register regname.
+
    As discussed in detail below, register values are normally relative to
    the selected stack frame.  The regname may be any register name valid on
    the machine you are using, with or without the initial `$`.
@@ -2157,15 +2278,21 @@ pointer to the current stack frame, and `$ps` is used for a
 register that contains the processor status.  For example,
 you could print the program counter in hex with
 
-    p/x $pc
+```gdb
+p/x $pc
+```
 
 or print the instruction to be executed next with
 
-    x/i $pc
+```gdb
+x/i $pc
+```
 
 or add four to the stack pointer[11](#FOOT11) with
-
-    set $sp += 4
+    
+```gdb
+set $sp += 4
+```
 
 Whenever possible, these four standard register names are available on
 your machine even though the machine has different canonical mnemonics,
@@ -2199,22 +2326,26 @@ have SSE and MMX registers that can hold several values packed
 together in several different formats.  GDB refers to such
 registers in `struct` notation:
 
-    (gdb) print $xmm1
-    $1 = {
-      v4_float = {0, 3.43859137e-038, 1.54142831e-044, 1.821688e-044},
-      v2_double = {9.92129282474342e-303, 2.7585945287983262e-313},
-      v16_int8 = "\000\000\000\000\3706;\001\v\000\000\000\r\000\000",
-      v8_int16 = {0, 0, 14072, 315, 11, 0, 13, 0},
-      v4_int32 = {0, 20657912, 11, 13},
-      v2_int64 = {88725056443645952, 55834574859},
-      uint128 = 0x0000000d0000000b013b36f800000000
-    }
+```gdb
+(gdb) print $xmm1
+$1 = {
+  v4_float = {0, 3.43859137e-038, 1.54142831e-044, 1.821688e-044},
+  v2_double = {9.92129282474342e-303, 2.7585945287983262e-313},
+  v16_int8 = "\000\000\000\000\3706;\001\v\000\000\000\r\000\000",
+  v8_int16 = {0, 0, 14072, 315, 11, 0, 13, 0},
+  v4_int32 = {0, 20657912, 11, 13},
+  v2_int64 = {88725056443645952, 55834574859},
+  uint128 = 0x0000000d0000000b013b36f800000000
+}
+```
 
 To set values of such registers, you need to tell GDB which
 view of the register you wish to change, as if you were assigning
 value to a `struct` member:
 
-    (gdb) set $xmm1.uint128 = 0x000000000000000000000000FFFFFFFF
+```gdb
+(gdb) set $xmm1.uint128 = 0x000000000000000000000000FFFFFFFF
+```
 
 Normally, register values are relative to the selected stack frame
 (see [Selecting a Frame](Selection.html#Selection)).  This means that you get the
@@ -2268,8 +2399,11 @@ Depending on the configuration, GDB may be able to give
 you more information about the status of the floating point hardware.
 
 - `info float`
+
    Display hardware-dependent information about the floating
-   point unit.  The exact contents and layout vary depending on the
+   point unit.
+
+   The exact contents and layout vary depending on the
    floating point chip.  Currently, `info float` is supported on
    the ARM and x86 machines.
 
@@ -2280,8 +2414,10 @@ Depending on the configuration, GDB may be able to give you
 more information about the status of the vector unit.
 
 - `info vector`
-   Display information about the vector unit.  The exact contents and
-   layout vary depending on the hardware.
+
+   Display information about the vector unit.
+
+   The exact contents and layout vary depending on the hardware.
 
 
 ## 10.16 Operating System Auxiliary Information
@@ -2302,8 +2438,11 @@ support of the `qXfer:auxv:read` packet, see
 [qXfer auxiliary vector read](General-Query-Packets.html#qXfer-auxiliary-vector-read).
 
 - `info auxv`
+
    Display the auxiliary vector of the inferior, which can be either a
-   live process or a core dump file.  GDB prints each tag value
+   live process or a core dump file.
+
+   GDB prints each tag value
    numerically, and also shows names and text descriptions for recognized
    tags.  Some values in the vector are numbers, some bit masks, and some
    pointers to strings or other data.  GDB displays each value in the
@@ -2319,33 +2458,43 @@ support of the `qXfer:auxv:read` packet, see
    `qXfer:osdata:read` packet, see [qXfer osdata read](General-Query-Packets.html#qXfer-osdata-read).
 
 - `info os infotype`
+
    Display OS information of the requested type.
 
    On GNU/Linux, the following values of infotype are valid:
 
 - `cpus`
-   Display the list of all CPUs/cores. For each CPU/core, GDB prints
+
+   Display the list of all CPUs/cores.
+
+   For each CPU/core, GDB prints
    the available fields from /proc/cpuinfo. For each supported architecture
    different fields are available. Two common entries are processor which gives
    CPU number and bogomips; a system constant that is calculated during
    kernel initialization.
 
 - `files`
-   Display the list of open file descriptors on the target.  For each
-   file descriptor, GDB prints the identifier of the process
+
+   Display the list of open file descriptors on the target.
+
+   For each file descriptor, GDB prints the identifier of the process
    owning the descriptor, the command of the owning process, the value
    of the descriptor, and the target of the descriptor.
 
 - `modules`
-   Display the list of all loaded kernel modules on the target.  For each
-   module, GDB prints the module name, the size of the module in
+
+   Display the list of all loaded kernel modules on the target.
+
+   For each module, GDB prints the module name, the size of the module in
    bytes, the number of times the module is used, the dependencies of the
    module, the status of the module, and the address of the loaded module
    in memory.
 
 - `msg`
-   Display the list of all System V message queues on the target.  For each
-   message queue, GDB prints the message queue key, the message
+
+   Display the list of all System V message queues on the target.
+
+   For each message queue, GDB prints the message queue key, the message
    queue identifier, the access permissions, the current number of bytes
    on the queue, the current number of messages on the queue, the processes
    that last sent and received a message on the queue, the user and group
@@ -2354,16 +2503,20 @@ support of the `qXfer:auxv:read` packet, see
    the message queue was last changed.
 
 - `processes`
-   Display the list of processes on the target.  For each process,
-   GDB prints the process identifier, the name of the user, the
+
+   Display the list of processes on the target.
+
+   For each process, GDB prints the process identifier, the name of the user, the
    command corresponding to the process, and the list of processor cores
    that the process is currently running on.  (To understand what these
    properties mean, for this and the following info types, please consult
    general GNU/Linux documentation.)
 
 - `procgroups`
-   Display the list of process groups on the target.  For each process,
-   GDB prints the identifier of the process group that it belongs
+
+   Display the list of process groups on the target.
+
+   For each process, GDB prints the identifier of the process group that it belongs
    to, the command corresponding to the process group leader, the process
    identifier, and the command line of the process.  The list is sorted
    first by the process group identifier, then by the process identifier,
@@ -2371,14 +2524,18 @@ support of the `qXfer:auxv:read` packet, see
    and the process group leader is listed first.
 
 - `semaphores`
-   Display the list of all System V semaphore sets on the target.  For each
-   semaphore set, GDB prints the semaphore set key, the semaphore
+
+   Display the list of all System V semaphore sets on the target.
+
+   For each semaphore set, GDB prints the semaphore set key, the semaphore
    set identifier, the access permissions, the number of semaphores in the
    set, the user and group of the owner and creator of the semaphore set,
    and the times at which the semaphore set was operated upon and changed.
 
 - `shm`
+
    Display the list of all System V shared-memory regions on the target.
+
    For each shared-memory region, GDB prints the region key,
    the shared-memory identifier, the access permissions, the size of the
    region, the process that created the region, the process that last
@@ -2387,20 +2544,25 @@ support of the `qXfer:auxv:read` packet, see
    attached to, detach from, and changed.
 
 - `sockets`
-   Display the list of Internet-domain sockets on the target.  For each
-   socket, GDB prints the address and port of the local and
+
+   Display the list of Internet-domain sockets on the target.
+
+   For each socket, GDB prints the address and port of the local and
    remote endpoints, the current state of the connection, the creator of
    the socket, the IP address family of the socket, and the type of the
    connection.
 
 - `threads`
-   Display the list of threads running on the target.  For each thread,
-   GDB prints the identifier of the process that the thread
+
+   Display the list of threads running on the target.
+
+   For each thread, GDB prints the identifier of the process that the thread
    belongs to, the command of the process, the thread identifier, and the
    processor core that it is currently running on.  The main thread of a
    process is not listed.
 
 - `info os`
+
    If infotype is omitted, then list the possible values for
    infotype and the kind of OS information available for each
    infotype.  If the target does not return a list of possible
@@ -2426,46 +2588,58 @@ all memory.
 When a memory region is defined, it is given a number to identify it;
 to enable, disable, or remove a memory region, you specify that number.
 
-- `mem lowerupperattributes&hellip;`
+- `mem lowerupperattributes…`
+
    Define a memory region bounded by lower and upper with
-   attributes attributes&hellip;, and add it to the list of regions
-   monitored by GDB.  Note that upper == 0 is a special
+   attributes attributes…, and add it to the list of regions
+   monitored by GDB.
+
+   Note that upper == 0 is a special
    case: it is treated as the target's maximum memory address.
    (0xffff on 16 bit targets, 0xffffffff on 32 bit targets, etc.)
 
 - `mem auto`
+
    Discard any user changes to the memory regions and use target-supplied
    regions, if available, or no regions if the target does not support.
 
-- `delete mem nums&hellip;`
-   Remove memory regions nums&hellip; from the list of regions
+- `delete mem nums…`
+
+   Remove memory regions nums… from the list of regions
    monitored by GDB.
 
-- `disable mem nums&hellip;`
-   Disable monitoring of memory regions nums&hellip;.
+- `disable mem nums…`
+
+   Disable monitoring of memory regions nums….
+
    A disabled memory region is not forgotten.
    It may be enabled again later.
 
-- `enable mem nums&hellip;`
-   Enable monitoring of memory regions nums&hellip;.
+- `enable mem nums…`
+   Enable monitoring of memory regions nums….
 
 - `info mem`
    Print a table of all defined memory regions, with the following columns
    for each region:
 
-- *Memory Region Number*
+- *Memory Region Number*  
   *Enabled or Disabled.*
+
    Enabled memory regions are marked with `y`.
    Disabled memory regions are marked with `n`.
 
 - *Lo Address*
+
    The address defining the inclusive lower bound of the memory region.
 
 - *Hi Address*
+
    The address defining the exclusive upper bound of the memory region.
 
 - *Attributes*
+
    The list of attributes set for this memory region.
+
 
 #### 10.17.1 Attributes
 
@@ -2478,13 +2652,13 @@ While these attributes prevent GDB from performing invalid
 memory accesses, they do nothing to prevent the target system, I/O DMA,
 etc. from accessing memory.
 
-- `ro`
+- `ro`  
    Memory is read only.
 
-- `wo`
+- `wo`  
    Memory is write only.
 
-- `rw`
+- `rw`  
    Memory is read/write.  This is the default.
 
 
@@ -2495,16 +2669,16 @@ accesses in the memory region.  Often memory mapped device registers
 require specific sized accesses.  If no access size attribute is
 specified, GDB may use accesses of any size.
 
-- `8`
+- `8`  
    Use 8 bit memory accesses.
 
-- `16`
+- `16`  
    Use 16 bit memory accesses.
 
-- `32`
+- `32`  
    Use 32 bit memory accesses.
 
-- `64`
+- `64`  
    Use 64 bit memory accesses.
 
 
@@ -2516,10 +2690,10 @@ protocol overhead, it can lead to incorrect results because GDB
 does not know about volatile variables or memory mapped device
 registers.
 
-- `cache`
+- `cache`  
    Enable GDB to cache target memory.
 
-- `nocache`
+- `nocache`  
    Disable GDB from caching target memory.  This is the default.
 
 
@@ -2531,14 +2705,18 @@ regions has undesired effects for a specific target, or to provide
 better error checking.  The following commands control this behaviour.
 
 - `set mem inaccessible-by-default [on|off]`
+
    If `on` is specified, make  GDB treat memory not
    explicitly described by the memory ranges as non-existent and refuse accesses
-   to such memory.  The checks are only performed if there's at least one
+   to such memory.
+
+   The checks are only performed if there's at least one
    memory range defined.  If `off` is specified, make GDB
    treat the memory not explicitly described by the memory ranges as RAM.
    The default value is `on`.
 
 - `show mem inaccessible-by-default`
+
    Show the current handling of accesses to unknown memory.
 
 
@@ -2552,26 +2730,32 @@ memory.  Files may be in binary, Motorola S-record, Intel hex,
 Tektronix Hex, or Verilog Hex format; however, GDB can only
 append to binary files, and cannot read from Verilog Hex files.
 
-- `dump [format] memory filenamestart_addrend_addr`
+- `dump [format] memory filenamestart_addrend_addr`  
   `dump [format] value filenameexpr`
+
    Dump the contents of memory from start_addr to end_addr,
    or the value of expr, to filename in the given format.
 
    The format parameter may be any one of:
 
 - `binary`
+
    Raw binary form.
 
 - `ihex`
+
    Intel hex format.
 
 - `srec`
+
    Motorola S-record format.
 
 - `tekhex`
+
    Tektronix Hex format.
 
 - `verilog`
+
    Verilog Hex format.
 
    GDB uses the same definitions of these formats as the
@@ -2579,15 +2763,18 @@ append to binary files, and cannot read from Verilog Hex files.
    format is omitted, GDB dumps the data in raw binary
    form.
 
-- `append [binary] memory filenamestart_addrend_addr` 
+- `append [binary] memory filenamestart_addrend_addr`   
   `append [binary] value filenameexpr`
+
    Append the contents of memory from start_addr to end_addr,
    or the value of expr, to the file filename, in raw binary form.
    (GDB can only append data to files in raw binary form.)
 
 - `restore filename[binary]biasstartend`
-   Restore the contents of file filename into memory.  The
-   `restore` command can automatically recognize any known BFD
+
+   Restore the contents of file filename into memory.
+
+   The `restore` command can automatically recognize any known BFD
    file format, except for raw binary.  To restore a raw binary file you
    must specify the optional keyword `binary` after the filename.
 
@@ -2618,7 +2805,10 @@ are debugging in order to preserve a snapshot of its state.
 GDB has a special command for that.
 
 - `generate-core-file [file]``gcore [file]`
-   Produce a core dump of the inferior process.  The optional argument
+
+   Produce a core dump of the inferior process.
+
+   The optional argument
    file specifies the file name where to put the core dump.  If not
    specified, the file name defaults to core.pid, where
    pid is the inferior process ID.
@@ -2632,11 +2822,13 @@ GDB has a special command for that.
    `VM_DONTDUMP` flag for mappings where it is present in the file
    /proc/pid/smaps (see [set dump-excluded-mappings](#set-dump_002dexcluded_002dmappings)).
 
-- `set use-coredump-filter on` 
+- `set use-coredump-filter on`   
   `set use-coredump-filter off`
+
    Enable or disable the use of the file
-   /proc/pid/coredump_filter when generating core dump
-   files.  This file is used by the Linux kernel to decide what types of
+   /proc/pid/coredump_filter when generating core dump files.
+
+   This file is used by the Linux kernel to decide what types of
    memory mappings will be dumped or ignored when generating a core dump
    file.  pid is the process ID of a currently running process.
 
@@ -2659,8 +2851,9 @@ GDB has a special command for that.
    `4` (ELF headers) and `5` (private huge pages) are active.
    This will cause these memory mappings to be dumped automatically.
 
-- `set dump-excluded-mappings on`
+- `set dump-excluded-mappings on`  
   `set dump-excluded-mappings off`
+
    If `on` is specified, GDB will dump memory mappings
    marked with the `VM_DONTDUMP` flag.  This flag is represented in
    the file /proc/pid/smaps with the acronym `dd`.
@@ -2694,11 +2887,14 @@ Here are the commands for controlling GDB's character set
 support:
 
 - `set target-charset charset`
-   Set the current target character set to charset.  To display the
-   list of supported target character sets, type
+
+   Set the current target character set to charset.
+
+   To display the list of supported target character sets, type
    set target-charset TABTAB.
 
 - `set host-charset charset`
+
    Set the current host character set to charset.
 
    By default, GDB uses a host character set appropriate to the
@@ -2712,27 +2908,35 @@ support:
    GDB will list the host character sets it supports.
 
 - `set charset charset`
-   Set the current host and target character sets to charset.  As
-   above, if you type set charset TABTAB,
+
+   Set the current host and target character sets to charset.
+
+   As above, if you type set charset TABTAB,
    GDB will list the names of the character sets that can be used
    for both host and target.
 
 - `show charset`
+
    Show the names of the current host and target character sets.
 
 - `show host-charset`
+
    Show the name of the current host character set.
 
 - `show target-charset`
+
    Show the name of the current target character set.
 
 - `set target-wide-charset charset`
-   Set the current target's wide character set to charset.  This is
-   the character set used by the target's `wchar_t` type.  To
+
+   Set the current target's wide character set to charset.
+
+   This is the character set used by the target's `wchar_t` type.  To
    display the list of supported wide character sets, type
    set target-wide-charset TABTAB.
 
 - `show target-wide-charset`
+
    Show the name of the current target's wide character set.
 
 Here is an example of GDB's character set support in action.
@@ -2761,28 +2965,34 @@ encoded in the ASCII and IBM1047 character sets.
 
 We compile the program, and invoke the debugger on it:
 
-    $ gcc -g charset-test.c -o charset-test
-    $ gdb -nw charset-test
-    GNU gdb 2001-12-19-cvs
-    Copyright 2001 Free Software Foundation, Inc.
-    &hellip;
-    (gdb)
+```gdb
+$ gcc -g charset-test.c -o charset-test
+$ gdb -nw charset-test
+GNU gdb 2001-12-19-cvs
+Copyright 2001 Free Software Foundation, Inc.
+…
+(gdb)
+```
 
 We can use the `show charset` command to see what character sets
 GDB is currently using to interpret and display characters and
 strings:
 
-    (gdb) show charset
-    The current host and target character set is `ISO-8859-1'.
-    (gdb)
+```gdb
+(gdb) show charset
+The current host and target character set is `ISO-8859-1'.
+(gdb)
+```
 
 For the sake of printing this manual, let's use ASCII as our
 initial character set:
 
-    (gdb) set charset ASCII
-    (gdb) show charset
-    The current host and target character set is `ASCII'.
-    (gdb)
+```gdb
+(gdb) set charset ASCII
+(gdb) show charset
+The current host and target character set is `ASCII'.
+(gdb)
+```
 
 Let's assume that ASCII is indeed the correct character set for our
 host system &mdash; in other words, let's assume that if GDB prints
@@ -2790,18 +3000,22 @@ characters using the ASCII character set, our terminal will display
 them properly.  Since our current target character set is also
 ASCII, the contents of `ascii_hello` print legibly:
 
-    (gdb) print ascii_hello
-    $1 = 0x401698 "Hello, world!\n"
-    (gdb) print ascii_hello[0]
-    $2 = 72 'H'
-    (gdb)
+```gdb
+(gdb) print ascii_hello
+$1 = 0x401698 "Hello, world!\n"
+(gdb) print ascii_hello[0]
+$2 = 72 'H'
+(gdb)
+```
 
 GDB uses the target character set for character and string
 literals you use in expressions:
 
-    (gdb) print '+'
-    $3 = 43 '+'
-    (gdb)
+```gdb
+(gdb) print '+'
+$3 = 43 '+'
+(gdb)
+```
 
 The ASCII character set uses the number 43 to encode the `+` character.
 
@@ -2809,18 +3023,22 @@ GDB relies on the user to tell it which character set the
 target program uses.  If we print `ibm1047_hello` while our target
 character set is still ASCII, we get jibberish:
 
-    (gdb) print ibm1047_hello
-    $4 = 0x4016a8 "\310\205\223\223\226k@\246\226\231\223\204Z%"
-    (gdb) print ibm1047_hello[0]
-    $5 = 200 '\310'
-    (gdb)
+```gdb
+(gdb) print ibm1047_hello
+$4 = 0x4016a8 "\310\205\223\223\226k@\246\226\231\223\204Z%"
+(gdb) print ibm1047_hello[0]
+$5 = 200 '\310'
+(gdb)
+```
 
 If we invoke the `set target-charset` followed by TABTAB,
 GDB tells us the character sets it supports:
 
-    (gdb) set target-charset
-    ASCII       EBCDIC-US   IBM1047     ISO-8859-1
-    (gdb) set target-charset
+```gdb
+(gdb) set target-charset
+ASCII       EBCDIC-US   IBM1047     ISO-8859-1
+(gdb) set target-charset
+```
 
 We can select IBM1047 as our target character set, and examine the
 program's strings again.  Now the ASCII string is wrong, but
@@ -2828,26 +3046,30 @@ GDB translates the contents of `ibm1047_hello` from the
 target character set, IBM1047, to the host character set,
 ASCII, and they display correctly:
 
-    (gdb) set target-charset IBM1047
-    (gdb) show charset
-    The current host character set is `ASCII'.
-    The current target character set is `IBM1047'.
-    (gdb) print ascii_hello
-    $6 = 0x401698 "\110\145%%?\054\040\167?\162%\144\041\012"
-    (gdb) print ascii_hello[0]
-    $7 = 72 '\110'
-    (gdb) print ibm1047_hello
-    $8 = 0x4016a8 "Hello, world!\n"
-    (gdb) print ibm1047_hello[0]
-    $9 = 200 'H'
-    (gdb)
+```gdb
+(gdb) set target-charset IBM1047
+(gdb) show charset
+The current host character set is `ASCII'.
+The current target character set is `IBM1047'.
+(gdb) print ascii_hello
+$6 = 0x401698 "\110\145%%?\054\040\167?\162%\144\041\012"
+(gdb) print ascii_hello[0]
+$7 = 72 '\110'
+(gdb) print ibm1047_hello
+$8 = 0x4016a8 "Hello, world!\n"
+(gdb) print ibm1047_hello[0]
+$9 = 200 'H'
+(gdb)
+```
 
 As above, GDB uses the target character set for character and
 string literals you use in expressions:
 
-    (gdb) print '+'
-    $10 = 78 '+'
-    (gdb)
+```gdb
+(gdb) print '+'
+$10 = 78 '+'
+(gdb)
+```
 
 The IBM1047 character set uses the number 78 to encode the `+` character.
 
@@ -2873,33 +3095,45 @@ in the code segment.
 Other regions of memory can be explicitly marked as
 cacheable; see [Memory Region Attributes](Memory-Region-Attributes.html#Memory-Region-Attributes).
 
-- `set remotecache on`
+- `set remotecache on`  
   `set remotecache off`
+
    This option no longer does anything; it exists for compatibility
    with old scripts.
 
 - `show remotecache`
+
    Show the current state of the obsolete remotecache flag.
 
-- `set stack-cache on`
+- `set stack-cache on`  
 - `set stack-cache off`
-   Enable or disable caching of stack accesses.  When `on`, use
-   caching.  By default, this option is `on`.
+
+   Enable or disable caching of stack accesses.
+
+   When `on`, use caching.  By default, this option is `on`.
 
 - `show stack-cache`
+
    Show the current state of data caching for memory accesses.
 
-`set code-cache on``set code-cache off`
-   Enable or disable caching of code segment accesses.  When `on`,
-   use caching.  By default, this option is `on`.  This improves
+- `set code-cache on`  
+  `set code-cache off`
+
+   Enable or disable caching of code segment accesses.
+
+   When `on`, use caching.  By default, this option is `on`.  This improves
    performance of disassembly in remote debugging.
 
-`show code-cache`
+- `show code-cache`
+
    Show the current state of target memory cache for code segment accesses.
 
 - `info dcache [line]`
+
    Print the information about the performance of data cache of the
-   current inferior&rsquo;s address space.  The information displayed
+   current inferior's address space.
+
+   The information displayed
    includes the dcache width and depth, and for each cache line, its
    number, address, and how many times it was referenced.  This
    command is useful for debugging the data cache operation.
@@ -2908,16 +3142,20 @@ cacheable; see [Memory Region Attributes](Memory-Region-Attributes.html#Memory-R
    printed in hex.
 
 - `set dcache size size`
+
    Set maximum number of entries in dcache (dcache depth above).
 
 - `set dcache line-size line-size`
+
    Set number of bytes each dcache entry caches (dcache width above).
    Must be a power of 2.
 
 - `show dcache size`
+
    Show maximum number of dcache entries.  See [info dcache](#Caching-Target-Data).
 
 - `show dcache line-size`
+
    Show default size of dcache lines.
 
 ---
@@ -2937,46 +3175,53 @@ stack reads provides a significant speed up of remote backtraces.
 Memory can be searched for a particular sequence of bytes with the
 `find` command.
 
-- `find [/sn]start_addr, +len, val1[, val2, &hellip;]`
-  `find [/sn]start_addr, end_addr, val1[, val2, &hellip;]`
-   Search memory for the sequence of bytes specified by val1, val2,
-   etc.  The search begins at address start_addr and continues for either
-   len bytes or through to end_addr inclusive.
+`find [/sn]start_addr, +len, val1[, val2, …]`  
+`find [/sn]start_addr, end_addr, val1[, val2, …]`
 
-   `s` and `n` are optional parameters.
+Search memory for the sequence of bytes specified by val1, val2, etc.
+
+The search begins at address start_addr and continues for either
+len bytes or through to end_addr inclusive.
+
+- `s` and `n` are optional parameters.  
+
    They may be specified in either order, apart or together.
 
-   `s`, search query size
+- `s`, search query size
+
    The size of each search query value.
 
-- `b`
-   bytes
+   - `b`  
+      bytes
+   
+   - `h`  
+      halfwords (two bytes)
+   
+   - `w`  
+      words (four bytes)
+   
+   - `g`  
+      giant words (eight bytes)
 
-- `h`
-   halfwords (two bytes)
+   All values are interpreted in the current language.
+   This means, for example, that if the current source language is C/C++
+   then searching for the string `hello` includes the trailing `\0`.
+   The null terminator can be removed from searching by using casts,
+   e.g.: `{char[5]}"hello"`.
 
-- `w`
-   words (four bytes)
+   If the value size is not specified, it is taken from the
+   value's type in the current language.
+   This is useful when one wants to specify the search
+   pattern as a mixture of types.
+   Note that this means, for example, that in the case of C-like languages
+   a search for an untyped 0x42 will search for `(int) 0x42`
+   which is typically four bytes.
 
-- `g`
-   giant words (eight bytes)
+-  `n`, maximum number of finds
 
-All values are interpreted in the current language.
-This means, for example, that if the current source language is C/C++
-then searching for the string `hello` includes the trailing `\0`.
-The null terminator can be removed from searching by using casts,
-e.g.: `{char[5]}"hello"`.
+   The maximum number of matches to print.
 
-If the value size is not specified, it is taken from the
-value's type in the current language.
-This is useful when one wants to specify the search
-pattern as a mixture of types.
-Note that this means, for example, that in the case of C-like languages
-a search for an untyped 0x42 will search for `(int) 0x42`
-which is typically four bytes.
-
-n, maximum number of finds
-The maximum number of matches to print.  The default is to print all finds.
+   The default is to print all finds.
 
 You can use strings as search values.  Quote them with double-quotes
  (`"`).
@@ -3005,27 +3250,29 @@ void hello ()
 
 you get during debugging:
 
-    (gdb) find &hello[0], +sizeof(hello), "hello"
-    0x804956d <hello.1620+6>
-    1 pattern found
-    (gdb) find &hello[0], +sizeof(hello), 'h', 'e', 'l', 'l', 'o'
-    0x8049567 <hello.1620>
-    0x804956d <hello.1620+6>
-    2 patterns found.
-    (gdb) find &hello[0], +sizeof(hello), {char[5]}"hello"
-    0x8049567 <hello.1620>
-    0x804956d <hello.1620+6>
-    2 patterns found.
-    (gdb) find /b1 &hello[0], +sizeof(hello), 'h', 0x65, 'l'
-    0x8049567 <hello.1620>
-    1 pattern found
-    (gdb) find &mixed, +sizeof(mixed), (char) 'c', (short) 0x1234, (int) 0x87654321
-    0x8049560 <mixed.1625>
-    1 pattern found
-    (gdb) print $numfound
-    $1 = 1
-    (gdb) print $_
-    $2 = (void *) 0x8049560
+```gdb
+(gdb) find &hello[0], +sizeof(hello), "hello"
+0x804956d <hello.1620+6>
+1 pattern found
+(gdb) find &hello[0], +sizeof(hello), 'h', 'e', 'l', 'l', 'o'
+0x8049567 <hello.1620>
+0x804956d <hello.1620+6>
+2 patterns found.
+(gdb) find &hello[0], +sizeof(hello), {char[5]}"hello"
+0x8049567 <hello.1620>
+0x804956d <hello.1620+6>
+2 patterns found.
+(gdb) find /b1 &hello[0], +sizeof(hello), 'h', 0x65, 'l'
+0x8049567 <hello.1620>
+1 pattern found
+(gdb) find &mixed, +sizeof(mixed), (char) 'c', (short) 0x1234, (int) 0x87654321
+0x8049560 <mixed.1625>
+1 pattern found
+(gdb) print $numfound
+$1 = 1
+(gdb) print $_
+$2 = (void *) 0x8049560
+```
 
 
 ## 10.23 Value Sizes
@@ -3036,8 +3283,9 @@ some languages with dynamic typing systems, that an invalid program
 may indicate a value that is incorrectly large, this in turn may cause
 GDB to try and allocate an overly large ammount of memory.
 
-- `set max-value-size bytes`
+- `set max-value-size bytes`  
   `set max-value-size unlimited`
+
    Set the maximum size of memory that GDB will allocate for the
    contents of a value to bytes, trying to display a value that
    requires more memory than that will result in an error.
@@ -3061,5 +3309,6 @@ GDB to try and allocate an overly large ammount of memory.
    The default value of `max-value-size` is currently 64k.
 
 - `show max-value-size`
+
    Show the maximum size of memory, in bytes, that GDB will
    allocate for the contents of a value.
