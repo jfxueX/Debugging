@@ -6,8 +6,7 @@
 * [10.3 Program Variables](#103-program-variables)
 * [10.4 Artificial Arrays](#104-artificial-arrays)
 * [10.5 Output Formats](#105-output-formats)
-        * [Footnotes](#footnotes)
-    * [(10)](#10)
+    * [Footnotes](#footnotes)
 * [10.6 Examining Memory](#106-examining-memory)
 * [10.7 Automatic Display](#107-automatic-display)
 * [10.8 Print Settings](#108-print-settings)
@@ -19,22 +18,22 @@
 * [10.11 Convenience Variables](#1011-convenience-variables)
 * [10.12 Convenience Functions](#1012-convenience-functions)
 * [10.13 Registers](#1013-registers)
-        * [Footnotes](#footnotes-1)
+    * [Footnotes](#footnotes-1)
     * [(11)](#11)
 * [10.14 Floating Point Hardware](#1014-floating-point-hardware)
 * [10.15 Vector Unit](#1015-vector-unit)
 * [10.16 Operating System Auxiliary Information](#1016-operating-system-auxiliary-information)
 * [10.17 Memory Region Attributes](#1017-memory-region-attributes)
-        * [10.17.1 Attributes](#10171-attributes)
+    * [10.17.1 Attributes](#10171-attributes)
         * [10.17.1.1 Memory Access Mode](#101711-memory-access-mode)
         * [10.17.1.2 Memory Access Size](#101712-memory-access-size)
         * [10.17.1.3 Data Cache](#101713-data-cache)
-        * [10.17.2 Memory Access Checking](#10172-memory-access-checking)
+    * [10.17.2 Memory Access Checking](#10172-memory-access-checking)
 * [10.18 Copy Between Memory and a File](#1018-copy-between-memory-and-a-file)
 * [10.19 How to Produce a Core File from Your Program](#1019-how-to-produce-a-core-file-from-your-program)
 * [10.20 Character Sets](#1020-character-sets)
 * [10.21 Caching Data of Targets](#1021-caching-data-of-targets)
-        * [Footnotes](#footnotes-2)
+    * [Footnotes](#footnotes-2)
     * [(12)](#12)
 * [10.22 Search Memory](#1022-search-memory)
 * [10.23 Value Sizes](#1023-value-sizes)
@@ -255,7 +254,9 @@ to programming languages:
 
 - `{type} addr`  
    Refers to an object of type type stored at address addr in
-   memory.  The address addr may be any expression whose value is
+   memory.
+
+   The address addr may be any expression whose value is
    an integer or pointer (but parentheses are required around binary
    operators, just as in a cast).  This construct is allowed regardless
    of what kind of data is normally supposed to reside at addr.
@@ -2380,7 +2381,7 @@ represent the value the register had just before the call.
 
 ---
 
-#### Footnotes
+### Footnotes
 
 ### [(11)](#DOCF11)
 
@@ -2641,7 +2642,7 @@ to enable, disable, or remove a memory region, you specify that number.
    The list of attributes set for this memory region.
 
 
-#### 10.17.1 Attributes
+### 10.17.1 Attributes
 
 #### 10.17.1.1 Memory Access Mode
 
@@ -2697,7 +2698,7 @@ registers.
    Disable GDB from caching target memory.  This is the default.
 
 
-#### 10.17.2 Memory Access Checking
+### 10.17.2 Memory Access Checking
 
 GDB can be instructed to refuse accesses to memory that is
 not explicitly described.  This can be useful if accessing such
@@ -3160,7 +3161,7 @@ cacheable; see [Memory Region Attributes](Memory-Region-Attributes.html#Memory-R
 
 ---
 
-#### Footnotes
+### Footnotes
 
 ### [(12)](#DOCF12)
 
