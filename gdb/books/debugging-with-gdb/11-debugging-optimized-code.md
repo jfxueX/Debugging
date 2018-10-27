@@ -16,13 +16,13 @@ GDB is more accurate with optimization disabled. If you can recompile without op
 easier to follow the progress of your program during debugging. But, there are many cases where you 
 may need to debug an optimized version.
 
-When you debug a program compiled with ‘-g -O’, remember that the optimizer has rearranged your 
+When you debug a program compiled with `-g -O`, remember that the optimizer has rearranged your 
 code; the debugger shows you what is really there. Do not be too surprised when the execution path 
 does not exactly match your source file! An extreme example: if you define a variable, but never use 
 it, GDB never sees that variable—because the compiler optimizes it out of existence.
 
-Some things do not work as well with ‘-g -O’ as with just ‘-g’, particularly on machines with 
-instruction scheduling. If in doubt, recompile with ‘-g’ alone, and if this fixes the problem, 
+Some things do not work as well with `-g -O` as with just `-g`, particularly on machines with 
+instruction scheduling. If in doubt, recompile with `-g` alone, and if this fixes the problem, 
 please report it to us as a bug (including a test case!). See [Variables](Variables.html#Variables), 
 for more information about debugging optimized code.
 
@@ -55,14 +55,14 @@ this; single instruction steps always show the inlined body.
 There are some ways that GDB does not pretend that inlined function calls are the same as normal 
 calls:
 
--   Setting breakpoints at the call site of an inlined function may not work, because the call site 
-does not contain any code. GDB may incorrectly move the breakpoint to the next line of the enclosing 
-function, after the call. This limitation will be removed in a future version of GDB; until then, 
-set a breakpoint on an earlier line or inside the inlined function instead.
+-  Setting breakpoints at the call site of an inlined function may not work, because the call site 
+   does not contain any code. GDB may incorrectly move the breakpoint to the next line of the enclosing 
+   function, after the call. This limitation will be removed in a future version of GDB; until then, 
+   set a breakpoint on an earlier line or inside the inlined function instead.
 
--   GDB cannot locate the return value of inlined calls after using the `finish` command. This is a 
-limitation of compiler-generated debugging information; after `finish`, you can step to the next 
-line and print a variable where your program stored the return value.
+-  GDB cannot locate the return value of inlined calls after using the `finish` command. This is a 
+   limitation of compiler-generated debugging information; after `finish`, you can step to the next 
+   line and print a variable where your program stored the return value.
 
 
 ## 11.2 Tail Call Frames
@@ -103,22 +103,22 @@ never used for this purpose) and the last known caller could have reached the kn
 multiple different jump sequences. In such case GDB still tries to show at least all the unambiguous 
 top tail callers and all the unambiguous bottom tail calees, if any.
 
--   `set debug entry-values`
+- `set debug entry-values`
 
-    When set to on, enables printing of analysis messages for both frame argument values at function 
-entry and tail calls. It will show all the possible valid tail calls code paths it has considered. 
-It will also print the intersection of them with the final unambiguous (possibly partial or even 
-empty) code path result.
+   When set to on, enables printing of analysis messages for both frame argument values at function 
+   entry and tail calls. It will show all the possible valid tail calls code paths it has considered. 
+   It will also print the intersection of them with the final unambiguous (possibly partial or even 
+   empty) code path result.
 
--   `show debug entry-values`
+- `show debug entry-values`
 
-    Show the current state of analysis messages printing for both frame argument values at function 
-entry and tail calls.
+   Show the current state of analysis messages printing for both frame argument values at function 
+   entry and tail calls.
 
-The analysis messages for tail calls can for example show why the virtual tail call frame for 
-function `c` has not been recognized (due to the indirect reference by variable `x`):
+   The analysis messages for tail calls can for example show why the virtual tail call frame for 
+   function `c` has not been recognized (due to the indirect reference by variable `x`):
 
-``` smallexample
+```gdb
 static void __attribute__((noinline, noclone)) c (void);
 void (*x) (void) = c;
 static void __attribute__((noinline, noclone)) a (void) { x++; }
@@ -136,7 +136,7 @@ a () at t.c:3
 
 Another possibility is an ambiguous virtual tail call frames resolution:
 
-``` smallexample
+```gdb
 int i;
 static void __attribute__((noinline, noclone)) f (void) { i++; }
 static void __attribute__((noinline, noclone)) e (void) { f (); }

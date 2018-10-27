@@ -1,6 +1,11 @@
 
 # 4 Running Programs Under GDB
 
+
+* [4.1 Compiling for Debugging](#41-compiling-for-debugging)
+* [4.2 Starting your Program](#42-starting-your-program)
+
+
 When you run a program under GDB, you must first generate debugging information when you compile it.
 
 You may start GDB with its arguments, if any, in an environment of your choice. If you are doing 
@@ -8,7 +13,7 @@ native debugging, you may redirect your program’s input and output, debug an a
 process, or kill a child process.
 
 
-### 4.1 Compiling for Debugging
+## 4.1 Compiling for Debugging
 
 In order to debug a program effectively, you need to generate debugging information when you compile 
 it. This debugging information is stored in the object file; it describes the data type of each 
@@ -32,7 +37,7 @@ this option, do not use it.
 
 GDB knows about preprocessor macros and can show you their expansion (see [Macros](Macros.html#Macros)). 
 Most compilers do not include information about preprocessor macros in the 
-debugging information if you specify the -g flag alone. Version 3.1 and later of GCC, the GNU C 
+debugging information if you specify the `-g` flag alone. Version 3.1 and later of GCC, the GNU C 
 compiler, provides macro information if you are using the DWARF debugging format, and specify the 
 option `-g3`.
 
