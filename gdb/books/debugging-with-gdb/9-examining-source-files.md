@@ -162,7 +162,7 @@ linespec:
 - `function:label`  
    Specifies the line where label appears in function.
 
-`filename:function`  
+- `filename:function`  
    Specifies the line that begins the body of the function *function* in the file 
    *filename*. 
 
