@@ -117,29 +117,29 @@ A *linespec* is a colon-separated list of source location parameters such as
 file name, function name, etc. Here are all the different ways of specifying a 
 linespec:
 
-- `linenum`  
-   Specifies the line number linenum of the current source file.
+- *`linenum`*  
+   Specifies the line number *linenum* of the current source file.
 
-- `-offset`  
-  `+offset`  
-   Specifies the line offset lines before or after the *current line*. 
+- *`-offset`*  
+  *`+offset`*  
+   Specifies the line *offset* lines before or after the *current line*. 
 
    For the `list` command, the current line is the last one printed; for the 
    breakpoint commands, this is the line at which execution stopped in the 
    currently selected *stack frame* (see [Frames](Frames.html#Frames), for a 
    description of stack frames.) When used as the second of the two linespecs in a 
-   `list` command, this specifies the line offset lines up or down from the first 
+   `list` command, this specifies the line *offset* lines up or down from the first 
    linespec.
 
-- `filename:linenum`  
-   Specifies the line linenum in the source file filename. 
+- *`filename:linenum`*  
+   Specifies the line *linenum* in the source file *filename*. 
 
-   If filename is a relative file name, then it will match any source file name 
-   with the same trailing components. For example, if filename is ‘gcc/expr.c’, 
+   If *filename* is a relative file name, then it will match any source file name 
+   with the same trailing components. For example, if *filename* is ‘gcc/expr.c’, 
    then it will match source file name of `/build/trunk/gcc/expr.c`, but not 
    `/build/trunk/libcpp/expr.c` or `/build/trunk/gcc/x-expr.c`.
 
-- `function`  
+- *`function`*  
    Specifies the line that begins the body of the function *function*. 
 
    For example, in C, this is the line with the open brace.
@@ -148,19 +148,19 @@ linespec:
    functions named *function* in all scopes. For C++, this means in all namespaces 
    and classes. For Ada, this means in all packages.
 
-   For example, assuming a program with C++ symbols named `A::B::func` and 
-   `B::func`, both commands `break func` and `break B::func` set a breakpoint on both 
-   symbols.
+   For example, assuming a program with C++ symbols named `A::B::foobar` and 
+   `B::foobar`, both commands `break foobar` and `break B::foobar` set a breakpoint 
+   on both symbols.
 
    Commands that accept a linespec let you override this with the `-qualified` 
-   option. For example, `break -qualified func` sets a breakpoint on a free-
-   function named `func` ignoring any C++ class methods and namespace functions 
-   called `func`.
+   option. For example, `break -qualified foobar` sets a breakpoint on a 
+   free-function named `foobar` ignoring any C++ class methods and namespace 
+   functions called `foobar`.
 
-   See [Explicit Locations](Explicit-Locations.html#Explicit-Locations).
+   See [Explicit Locations](#922-explicit-locations).
 
 - `function:label`  
-   Specifies the line where label appears in function.
+   Specifies the line where *label* appears in *function*.
 
 - `filename:function`  
    Specifies the line that begins the body of the function *function* in the file 
@@ -205,7 +205,7 @@ either the file system or the symbol table to know.
 
 The list of valid explicit location options is summarized in the following table:
 
-- `-source filename`  
+- <code>-source *filename*</code>  
    The value specifies the source file name. 
 
    To differentiate between files with the same base name, prepend as many 
@@ -213,7 +213,7 @@ The list of valid explicit location options is summarized in the following table
    foo/bar/baz.c. Otherwise GDB will use the first file it finds with the given 
    base name. This option requires the use of either `-function` or `-line`.
 
-- `-function function`  
+- <code>-function *function*</code>  
    The value specifies the name of a function.
 
    Operations on function locations unmodified by other options (such as
@@ -242,13 +242,13 @@ The list of valid explicit location options is summarized in the following table
    so the particular example above could be simplified as 
    `break -qualified B::func`.)
 
-- `-label label`  
+- <code>-label <i>label</i></code>  
    The value specifies the name of a label.
 
    When the function name is not specified, the label is searched in the 
    function of the currently selected stack frame.
 
-- `-line number`  
+- <code>-line <i>number</i></code>  
    The value specifies a line offset for the location. 
 
    The offset may either be absolute (`-line 3`) or relative (`-line +3`), 
