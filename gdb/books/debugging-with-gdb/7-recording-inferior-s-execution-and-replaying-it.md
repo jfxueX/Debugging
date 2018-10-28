@@ -456,11 +456,4 @@ provides the following commands:
    The default value is 10. A size of `unlimited` means unlimited lines.
 
 - `show record function-call-history-size`  
-
    Show how many lines to print in the `record function-call-history` command.
-
-------------------------------------------------------------------------
-
-Next: [Stack](Stack.html#Stack), Previous: [Reverse Execution](Reverse-Execution.html#Reverse-Execution), Up: [Top](index.html#Top)   \[[Contents](index.html#SEC_Contents "Table of contents")\]\[[Index](Concept-Index.html#Concept-Index "Index")\]
-
-
