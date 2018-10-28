@@ -217,7 +217,7 @@ The list of valid explicit location options is summarized in the following table
    The value specifies the name of a function.
 
    Operations on function locations unmodified by other options (such as
-   `- label` or `-line`) refer to the line that begins the body of the function. 
+   `-label` or `-line`) refer to the line that begins the body of the function. 
    In C, for example, this is the line with the open brace.
 
    By default, in C++ and Ada, function is interpreted as specifying all 
@@ -225,7 +225,7 @@ The list of valid explicit location options is summarized in the following table
    and classes. For Ada, this means in all packages.
 
    For example, assuming a program with C++ symbols named `A::B::func` and 
-   `B::func`, both commands `break -function func` and `break -function B::func` 
+   `B::func`, both commands ‘break -function func’ and ‘break -function B::func’ 
    set a breakpoint on both symbols.
 
    You can use the `-qualified` flag to override this (see below).
@@ -235,12 +235,12 @@ The list of valid explicit location options is summarized in the following table
    complete fully-qualified name.
 
    For example, assuming a C`++` program with symbols named `A::B::func` and 
-   `B::func`, the `break -qualified -function B::func` command sets a breakpoint on 
+   `B::func`, the ‘break -qualified -function B::func’ command sets a breakpoint on 
    `B::func`, only.
 
    (Note: the -qualified option can precede a linespec as well (see [Linespec Locations](Linespec-Locations.html#Linespec-Locations)), 
    so the particular example above could be simplified as 
-   `break -qualified B::func`.)
+   ‘break -qualified B::func’.)
 
 - <code>-label <i>label</i></code>  
    The value specifies the name of a label.
@@ -256,7 +256,7 @@ The list of valid explicit location options is summarized in the following table
    offset is relative to the current line.
 
 Explicit location options may be abbreviated by omitting any non-unique trailing 
-characters from the option name, e.g., `break -s main.c -li 3`.
+characters from the option name, e.g., ‘break -s main.c -li 3’.
 
 
 ### 9.2.3 Address Locations
