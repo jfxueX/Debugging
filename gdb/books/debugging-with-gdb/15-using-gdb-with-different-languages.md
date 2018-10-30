@@ -213,8 +213,8 @@ arguments to operators and functions have to be of the correct type,
 otherwise an error occurs.  These checks prevent type mismatch
 errors from ever causing any run-time problems.  For example,
 
-<pre>
-int klass::my_method(char \*b) { return  b ? 1 : 2; }
+```gdb
+int klass::my_method(char *b) { return  b ? 1 : 2; }
 
 (gdb) <b>print obj.my_method (0)</b>
 $1 = 2
@@ -225,8 +225,7 @@ but
 
 (gdb) <b>print obj.my_method (0x1234)</b>
 Cannot resolve method klass::my_method to any overloaded instance
-</pre>
-    
+```
 
 The second example fails because in C++ the integer constant
 &lsquo;0x1234&rsquo; is not type-compatible with the pointer parameter type.

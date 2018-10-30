@@ -1,6 +1,6 @@
 Edit ~/.gdbinit
 
-```
+```gdb
 # configure TUI
 tui enable
 layout asm

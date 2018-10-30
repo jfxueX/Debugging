@@ -1,0 +1,3 @@
+- [gdbinit/Gdbinit](https://github.com/gdbinit/Gdbinit)
+- [dholm/dotgdb](https://github.com/dholm/dotgdb)
+- [Canned Sequences of Commands](../books/debugging-with-gdb/23-extending-gdb.md#231-canned-sequences-of-commands)
